@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>Angular Js | Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://localhost/css/w3.css">
+<link rel="stylesheet" href="http://localhost/css/auth.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body, html {
+    height: 100%;
+    line-height: 1.8;
+}
+/* Full height image header */
+.bgimg-1 {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/images/mac.jpg");
+    min-height: 100%;
+}
+.w3-bar .w3-button {
+    padding: 16px;
+}
+</style>
+
+<body ng-app="angulardemo">
+	<div data-ng-view style="display: inline !important;"></div>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/angular-route.min.js"></script>
+	<script src="app.js"></script>
+	<script src="factories/auth.factory.js"></script>
+	<script src="factories/flash.factory.js"></script>
+	<script src="services/auth.service.js"></script>
+	<script src="services/navigation.service.js"></script>
+	<script src="controllers/pages.controller.js"></script>
+	<script src="controllers/auth.controller.js"></script>
+	<script src="controllers/navigation.controller.js"></script>
+	<!-- Add Google Maps -->
+	<script>
+	// function myMap()
+	// {
+	//   myCenter=new google.maps.LatLng(41.878114, -87.629798);
+	//   var mapOptions= {
+	//     center:myCenter,
+	//     zoom:12, scrollwheel: false, draggable: false,
+	//     mapTypeId:google.maps.MapTypeId.ROADMAP
+	//   };
+	//   var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+	//   var marker = new google.maps.Marker({
+	//     position: myCenter,
+	//   });
+	//   marker.setMap(map);
+	// }
+	// Modal Image Gallery
+	function onClick(element) {
+	  document.getElementById("img01").src = element.src;
+	  document.getElementById("modal01").style.display = "block";
+	  var captionText = document.getElementById("caption");
+	  captionText.innerHTML = element.alt;
+	}
+
+
+	// Toggle between showing and hiding the sidebar when clicking the menu icon
+	var mySidebar = document.getElementById("mySidebar");
+
+	function w3_open() {
+	    if (mySidebar.style.display === 'block') {
+	        mySidebar.style.display = 'none';
+	    } else {
+	        mySidebar.style.display = 'block';
+	    }
+	}
+
+	// Close the sidebar with the close button
+	function w3_close() {
+	    mySidebar.style.display = "none";
+	}
+	</script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp-->
+
+
+</body>
+</html>

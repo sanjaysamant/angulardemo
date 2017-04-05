@@ -1,0 +1,40 @@
+<ng-include src="'templates/header.html'"></ng-include>
+<div class="w3-container w3-light-grey" style="padding:40px 6px" id="contact">
+    <div class="center">
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-danger-message">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <p><strong>{{resp.message}}</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="w3-center">Login</h3>
+      <p class="w3-center w3-large">Registered user login here!:</p>
+      <form ng-submit="login()" name="loginForm">
+        <div class="imgcontainer">
+          <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+          <label><b>Email</b></label>
+          <input type="email" placeholder="Email" required name="email" ng-model="file.email">
+          <span ng-show="loginForm.email.$touched && loginForm.email.$invalid">The Email is required.</span>
+
+          <label><b>Password</b></label>
+          <input type="password" placeholder="Password" required name="password"  ng-model="file.password">
+          <span ng-show="loginForm.password.$touched && loginForm.password.$invalid">The Password is required.</span>
+
+          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Login</button>
+          <!-- <input type="checkbox" checked="checked"> Remember me -->
+        </div>
+
+        <!-- <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div> -->
+      </form>
+    </div>
+</div>
+<ng-include src="'templates/footer.html'"></ng-include>
