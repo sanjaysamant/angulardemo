@@ -12,7 +12,6 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 			$scope.resp = AuthService.register($scope.file);
 			console.log($scope.resp);
-    		FlashFactory.setMessage($scope.resp.message);
 			if($scope.resp.success)
 				$location.path('/login').replace();
 			else
