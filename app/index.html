@@ -3,8 +3,8 @@
 <title>Angular Js | Demo</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/w3.css">
-<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="public/css/w3.css">
+<link rel="stylesheet" href="public/css/auth.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -18,7 +18,7 @@ body, html {
 .bgimg-1 {
     background-position: center;
     background-size: cover;
-    background-image: url("/images/mac.jpg");
+    background-image: url("public/images/mac.jpg");
     min-height: 100%;
 }
 .w3-bar .w3-button {
@@ -28,16 +28,17 @@ body, html {
 
 <body ng-app="angulardemo">
 	<div data-ng-view style="display: inline !important;"></div>
-	<script src="lib/angular/angular.min.js"></script>
-	<script src="lib/angular-route.min.js"></script>
-	<script src="app.js"></script>
-	<script src="factories/auth.factory.js"></script>
-	<script src="factories/flash.factory.js"></script>
-	<script src="services/auth.service.js"></script>
-	<script src="services/navigation.service.js"></script>
-	<script src="controllers/pages.controller.js"></script>
-	<script src="controllers/auth.controller.js"></script>
-	<script src="controllers/navigation.controller.js"></script>
+	<script src="Http/lib/angular/angular.min.js"></script>
+	<script src="Http/lib/angular-route.min.js"></script>
+	<script src="Http/lib/angular-cookies.js"></script>
+	<script src="Http/app.js"></script>
+	<script src="Http/factories/auth.factory.js"></script>
+	<script src="Http/factories/flash.factory.js"></script>
+	<script src="Http/services/auth.service.js"></script>
+	<script src="Http/services/navigation.service.js"></script>
+	<script src="Http/controllers/pages.controller.js"></script>
+	<script src="Http/controllers/auth.controller.js"></script>
+	<script src="Http/controllers/navigation.controller.js"></script>
 	<!-- Add Google Maps -->
 	<script>
 	// function myMap()
