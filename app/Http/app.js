@@ -1,7 +1,12 @@
 var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
-		.constant('API_URL', 'http://localhost:8001/api')
-		.config(function ($routeProvider, $locationProvider) {
-
+		.constant('API_URL', 'http://127.0.0.1:8001')
+		.config(function ($routeProvider, $locationProvider, $httpProvider) {
+// app.config(function ($httpProvider) {
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+// });
 			$routeProvider
 			.when('/', {
 

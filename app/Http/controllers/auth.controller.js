@@ -9,7 +9,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	$scope.register = function () {
 
 		$http.post("http://127.0.0.1:8001/api/register", JSON.stringify($scope.file)).success(function (response) {
-
+			// alert("jhe");
 			// $scope.resp = AuthService.register($scope.file);
 			// console.log($scope.resp);
 			// if($scope.resp.success)
@@ -25,9 +25,8 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	 * @return {[type]} [description]
 	 */ 
 	$scope.login = function () {
-		//var data = {};
-		data = {"email" : "test@mail.com"};//JSON.stringify($scope.file);
-		$http.post("http://127.0.0.1:8001/api/login", data).success(function (response) {
+
+		$http.post("http://127.0.0.1:8001/api/login", JSON.stringify($scope.file)).success(function (response) {
 			//console.log(response);
 			// return;
 			// $scope.resp = AuthService.login($scope.file);
