@@ -12,22 +12,31 @@
       </div>
       <h3 class="w3-center">Register</h3>
       <p class="w3-center w3-large">New user register here!:</p>
-      <form ng-submit="register()" name="registerForm">
-        <div class="container">
-          <label><b>Email</b></label>
-          <input type="email" placeholder="Email" required name="email" ng-model="file.email">
-          <span ng-show="registerForm.email.$touched && registerForm.email.$invalid">The Email is required.</span>
 
+      <form ng-submit="register()" name="registerForm" enctype="multipart/form-data">
+
+        <div class="container">
+
+          <label><b>ProformData Image</b></label>
+          <input type="file" ngf-select ng-model="formData.profile_pic" id="profile_pic" name="profile_pic" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">
+          <!--<i ng-show="formData.upload_form.proformData_pic.$error.required">*required</i><br>
+          <i ng-show="formData.upload_form.proformData_pic.$error.maxSize">formData too large 
+            {{up.formData.size / 1000000|number:1}}MB: max 20M</i>-->
+
+          <label><b>Email</b></label>
+          <input type="email" placeholder="Email" required name="email" ng-model="formData.email">
+          <span ng-show="registerForm.email.$touched && registerForm.email.$invalid">The Email is required.</span>
+          
           <label><b>Username</b></label>
-          <input type="text" placeholder="Username" required name="username" ng-model="file.username">
+          <input type="text" placeholder="Username" required name="username" ng-model="formData.username">
           <span ng-show="registerForm.username.$touched && registerForm.username.$invalid">The Username is required.</span>
 
           <label><b>Password</b></label>
-          <input type="password" placeholder="Password" required name="password"  ng-model="file.password">
+          <input type="password" placeholder="Password" required name="password"  ng-model="formData.password">
           <span ng-show="registerForm.password.$touched && registerForm.password.$invalid">The Password is required.</span>
 
           <label><b>Confirm Password</b></label>
-          <input type="password" placeholder="Confirm Password" required name="c_password"  ng-model="file.c_password">
+          <input type="password" placeholder="Confirm Password" required name="c_password"  ng-model="formData.c_password">
           <span ng-show="registerForm.c_password.$touched && registerForm.c_password.$invalid">The Confirm Password is required.</span>
 
           <button type="submit" onclick="document.getElementById('id01').style.display='block'">Login</button>

@@ -2,13 +2,32 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 	$scope.navMenu = NavigationService.getNavigation();
 
+// app.directive('fileModel', ['$parse', function ($parse) {
+
+// 	return {
+// 		restrict: 'A',
+// 		link: function(scope, element, attrs) {
+// 			var model = $parse(attrs.fileModel);
+// 			var modelSetter = model.assign;
+			
+// 			element.bind('change', function(){
+// 				scope.$apply(function(){
+// 				modelSetter(scope, element[0].files[0]);
+// 				});
+// 			});
+// 		}
+// 	};
+// }]);
+
 	/**
 	 * [register a new user]
 	 * @return {[boolean]} [user create true or false]
 	 */
 	$scope.register = function () {
-
-		$http.post("http://127.0.0.1:8001/api/register", JSON.stringify($scope.file)).success(function (response) {
+		
+		$scope.formData.profile_pic = document.getElementById('profile_pic').files[0];
+		console.log($scope.formData);
+		$http.post("http://127.0.0.1:8001/api/auth/register", $scope.file).success(function (response) {
 			// alert("jhe");
 			// $scope.resp = AuthService.register($scope.file);
 			// console.log($scope.resp);
@@ -26,7 +45,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	 */ 
 	$scope.login = function () {
 
-		$http.post("http://127.0.0.1:8001/api/login", JSON.stringify($scope.file)).success(function (response) {
+		$http.post("http://127.0.0.1:8001/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
 			//console.log(response);
 			// return;
 			// $scope.resp = AuthService.login($scope.file);
