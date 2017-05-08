@@ -1,6 +1,10 @@
 var bcrypt = require('bcrypt');
-var db = require('../db.config');
+var mongo = require('mongoskin');
+var Q = require('q');
+var _ = require('lodash');
+var db = mongo.db('mongodb://127.0.0.1/angulardemo');
 
+db.bind('demotest');
 // var hash = bcrypt.hashSync("12345", salt);
 var model       = {};
 model.login     = login;
@@ -17,23 +21,35 @@ module.exports = model;
  */
 function create (userData){
 
-    db.demotest.find({"email" : userData.email}, function (err, user) {
+    var deferred = Q.defer();
 
-        if(err) return err;
+    db.demotest.findOne({"email" : userData.email}, function (err, user) {
+        if (err) deferred.reject(err);
 
         if(user){
 
-            return "Email : " + userData.email + " is already exists";
+            deferred.reject('Email "' + userData.email + '" is already taken');
         }
         else{
 
-            user.password = bcrypt.hashSync(userData.password, 10);
-            db.demotest.insert(user, function (err, doc) {
-
-                if(err) return err;
-            });
+            createUser();
         }
-    })
+    });
+    
+    function createUser() {
+
+        var user = _.omit(userData, ['password', 'c_password']);
+        user.password = bcrypt.hashSync(userData.password, 10);
+        db.demotest.insert(user, function (err, doc) {
+
+            if (err) deferred.reject(err);
+
+            deferred.resolve();
+        });
+    }
+
+    return deferred.promise;
+
 }
 
 /**
@@ -43,8 +59,8 @@ function create (userData){
 function login(email, password) {
     
     var salt = bcrypt.genSaltSync(10);
-
-    db.demotest.find({"email" : email, "password" : password}, function (err, user) {
+    var collection = db.collection('demotest');
+    collection.find({"email" : email, "password" : password}, function (err, user) {
 
         if(err) return err;
 
