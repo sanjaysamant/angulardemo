@@ -9,6 +9,12 @@ route.use(bodyParser.urlencoded({ extended: true })); // for parsing   applicati
 route.use(bodyParser.json()); // for parsing application/json
 // route.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
+route.use(session({
+    secret: "qwaszx",
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
 
 
 // var storage = multer.diskStorage({
@@ -43,7 +49,7 @@ route.post('/register', function (req, res) {
 
       //console.log(req.body);
       return userModel.create(req.body).then( function () {
-
+        
         res.sendStatus(200);
       }).catch( function (err) {
 
@@ -61,12 +67,15 @@ route.post('/register', function (req, res) {
  */
 route.post('/login', function (req, res) {
 
-    // userModel.authenticate(req.body.email, req.body.password).then( function () {
+    return userModel.login(req.body).then( function () {
+      
+      req.session.email = req.body.email;
+      //console.log(req.session.email);
+      res.sendStatus(200);
 
-    //     res.sendStatus(200);
-    // }).catch( function (err) {
+    }).catch( function (err) {
 
-    //     res.status(400).send(err);
-    // });
+      res.send(err).status(400);
+    })
 });
 module.exports = route;

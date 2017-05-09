@@ -22,6 +22,13 @@
           <!--<i ng-show="formData.upload_form.proformData_pic.$error.required">*required</i><br>
           <i ng-show="formData.upload_form.proformData_pic.$error.maxSize">formData too large 
             {{up.formData.size / 1000000|number:1}}MB: max 20M</i>-->
+          <label><b>User Type</b></label>
+          <select required name="user_type" ng-model="formData.user_type">
+            <option value="" selected>-Select Type-</option>
+            <option value="requester">Requester</option>
+            <option value="developer">Developer</option>
+          </select>
+          <span ng-show="registerForm.user_type.$touched && registerForm.user_type.$invalid">The User type is required.</span>
 
           <label><b>Email</b></label>
           <input type="email" placeholder="Email" required name="email" ng-model="formData.email">

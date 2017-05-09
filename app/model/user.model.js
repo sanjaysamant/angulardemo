@@ -2,7 +2,9 @@ var bcrypt = require('bcrypt');
 var mongo = require('mongoskin');
 var Q = require('q');
 var _ = require('lodash');
+var randomstring = require('randomstring');
 var db = mongo.db('mongodb://127.0.0.1/angulardemo');
+var deferred = Q.defer();
 
 db.bind('demotest');
 // var hash = bcrypt.hashSync("12345", salt);
@@ -21,8 +23,6 @@ module.exports = model;
  */
 function create (userData){
 
-    var deferred = Q.defer();
-
     db.demotest.findOne({"email" : userData.email}, function (err, user) {
         if (err) deferred.reject(err);
 
@@ -40,6 +40,10 @@ function create (userData){
 
         var user = _.omit(userData, ['password', 'c_password']);
         user.password = bcrypt.hashSync(userData.password, 10);
+        user.api_token = randomstring.generate(50);
+        user.registration_code = randomstring.generate(10);
+        user.is_active = 1;
+        user.is_verified = 1;
         db.demotest.insert(user, function (err, doc) {
 
             if (err) deferred.reject(err);
@@ -56,22 +60,23 @@ function create (userData){
  * 
  * User Login
  */
-function login(email, password) {
+function login(data) {
     
-    var salt = bcrypt.genSaltSync(10);
-    var collection = db.collection('demotest');
-    collection.find({"email" : email, "password" : password}, function (err, user) {
+    db.demotest.findOne({"email" : data.email}, function (err, user) {
 
-        if(err) return err;
+        if (err) deferred.reject(err);
 
-        if(user && bcrypt.compareSync(password, user.password)){
-
+        if(user && bcrypt.compareSync(data.password, user.password)){
+          
+            deferred.resolve();
         }
         else{
 
-            return "Invalid credential."
+            deferred.reject("Invalid Credential");
         }
     });
+
+    return deferred.promise;
 }
 
 function update (){

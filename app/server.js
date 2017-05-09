@@ -52,6 +52,16 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/api/auth', require('./controllers/auth.controller'));
+
+/**
+ * 
+ * Logout User
+ */
+app.get('/logout', function (req, res) {
+ // res.send(req.session.email); return;
+  req.session.email.destroy();
+});
+
 // app.use('/api', require('./controllers/users.controller'));
 
 // app.get('/api', function (req, res) {
