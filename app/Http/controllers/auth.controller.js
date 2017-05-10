@@ -11,7 +11,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 		// $scope.formData.profile_pic = document.getElementById('profile_pic').files[0];
 		$http.post("http://127.0.0.1:8001/api/auth/register", $scope.formData).success(function (response) {
 
-			if(response == "OK"){
+			if(response === "OK"){
 
 				$scope.resp = {"message" : "User successfully registered"};
 				// $scope.resp = AuthService.register($scope.file);
@@ -36,6 +36,16 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 		$http.post("http://127.0.0.1:8001/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
 			console.log(response);
+			if(response === "OK"){
+				
+				sessionStorage.setItem('auth', JSON.stringify({"email":$scope.file.email, "auth" : true}));// set user value in session storage
+				$scope.resp = {"message" : "Logged in successfully"};
+				$location.path('/personal_details').replace();
+			}else{
+
+				$scope.resp = {"message" : response};
+				$location.path('/login').replace();
+			}
 			// return;
 			// $scope.resp = AuthService.login($scope.file);
 			// console.log($scope.resp);
@@ -53,10 +63,12 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	$scope.logout = function () {
 
 		$http.get(API_URL + "/logout").success(function (response) {
-			console.log("logout");
-			$scope.resp = AuthService.logout();
-			console.log($scope.resp);
-    		FlashFactory.setMessage($scope.resp.message);
+
+			sessionStorage.removeItem('auth')
+			// console.log("logout");
+			// $scope.resp = AuthService.logout();
+			// console.log($scope.resp);
+    		// FlashFactory.setMessage($scope.resp.message);
 			$location.path('/login').replace();
 		});
 	}

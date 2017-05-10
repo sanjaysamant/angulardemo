@@ -78,4 +78,16 @@ route.post('/login', function (req, res) {
       res.send(err).status(400);
     })
 });
+
+/**
+ * 
+ * Logout User
+ */
+route.get('/logout', function (req, res) {
+
+
+    req.session.destroy();
+    res.sendStatus(200);
+});
+
 module.exports = route;
