@@ -34,13 +34,13 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	 */ 
 	$scope.login = function () {
 
-		$http.post("http://127.0.0.1:8001/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
+		$http.post(API_URL + "/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
 			console.log(response);
 			if(response === "OK"){
 				
 				sessionStorage.setItem('auth', JSON.stringify({"email":$scope.file.email, "auth" : true}));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
-				$location.path('/personal_details').replace();
+				$location.path('/users/details/personal').replace();
 			}else{
 
 				$scope.resp = {"message" : response};
@@ -62,7 +62,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	 */
 	$scope.logout = function () {
 
-		$http.get(API_URL + "/logout").success(function (response) {
+		$http.get(API_URL + "api/auth/logout").success(function (response) {
 
 			sessionStorage.removeItem('auth')
 			// console.log("logout");

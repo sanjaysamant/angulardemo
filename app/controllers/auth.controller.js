@@ -52,7 +52,7 @@ route.post('/register', function (req, res) {
         
         res.sendStatus(200);
       }).catch( function (err) {
-
+        console.log(err);
           res.send(err).status(400);
       });
     }else{
@@ -69,7 +69,7 @@ route.post('/login', function (req, res) {
 
     return userModel.login(req.body).then( function () {
       
-      req.session.email = req.body.email;
+      req.session.auth = req.body;
       //console.log(req.session.email);
       res.sendStatus(200);
 

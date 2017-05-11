@@ -1,5 +1,5 @@
 var express = require ('express'); //EXPRESS Package
-// var bodyParser = require('body-parser');// get body-parser
+var bodyParser = require('body-parser');// get body-parser
 var app = express();	//define our app using express
 var cors = require('cors');
 var multer = require('multer');
@@ -7,8 +7,8 @@ var session = require('express-session');
 // var morgan = require('morgan'); //use to see requests
 // var assert = require('assert');
 // var path = require('path');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cors());
 
 /**
@@ -52,6 +52,10 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/api/auth', require('./controllers/auth.controller'));
+app.use('/api/users/details/personal/store', function (req, res) {
+
+  console.log(req.body)
+});
 // app.use('/api', require('./controllers/users.controller'));
 
 // app.get('/api', function (req, res) {

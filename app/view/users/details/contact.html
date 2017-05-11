@@ -1,0 +1,66 @@
+<ng-include src="'view/templates/header.html'"></ng-include>
+<div class="w3-container w3-light-grey" style="padding:40px 6px" id="contact">
+    <div class="center">
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-danger-message">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <p><strong>{{resp.message}}</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="w3-center">Contact Details</h3>
+      <p class="w3-center w3-large">Please enter the contact details:</p>
+      <form ng-submit="create()" name="contactDetailsForm">
+        <div class="container">
+
+          <label><b>Mobile Number</b></label>
+          <input type="text" placeholder="Mobile Number" required name="mobile_phone" ng-model="formData.mobile_phone">
+          <span ng-show="contactDetailsForm.mobile_no.$touched && contactDetailsForm.mobile_no.$invalid">The Mobile Number is required.</span>
+
+          <label><b>Office Phone Number</b></label>
+          <input type="text" placeholder="Office Phone Number" name="office_phone" ng-model="formData.office_phone">
+
+          <label><b>Home Phone Number</b></label>
+          <input type="text" placeholder="Home Phone Number" name="home_phone" ng-model="formData.home_phone">
+
+          <label><b>House Number</b></label>
+          <input type="text" placeholder="House Number" required name="h_no" ng-model="formData.h_no">
+          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The House Number is required.</span>
+
+          <label><b>Street Number/Address</b></label>
+          <input type="text" placeholder="Street Number/Address" required name="street_no" ng-model="formData.street_no">
+          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The Street address is required.</span>
+ 
+          <label><b>Landmark</b></label>
+          <input type="text" placeholder="Landmark" name="landmark" ng-model="formData.Landmark">
+
+          <label><b>Zip</b></label>
+          <input type="text" placeholder="Zip" required name="zip" ng-model="formData.zip">
+          <span ng-show="contactDetailsForm.zip.$touched && contactDetailsForm.zip.$invalid">The Zip is required.</span>
+
+          <label><b>City</b></label>
+          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
+          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The City is required.</span>
+
+          <label><b>State</b></label>
+          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
+          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The State is required.</span>
+
+          <label><b>Country</b></label>
+          <input type="text" placeholder="Country" required name="country" ng-model="formData.country">
+          <span ng-show="contactDetailsForm.country.$touched && contactDetailsForm.country.$invalid">The Country is required.</span>
+
+          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Submit</button>
+          <!-- <input type="checkbox" checked="checked"> Remember me -->
+        </div>
+
+        <!-- <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div> -->
+      </form>
+    </div>
+</div>
+<ng-include src="'view/templates/footer.html'"></ng-include>

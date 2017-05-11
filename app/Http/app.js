@@ -52,20 +52,25 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 	            controller: 'AuthController',
 	            templateUrl: 'view/auth/login.html',
 	        })
-			.when('/personal_details', {
+			.when('/users/details/personal', {
 
-	            controller: 'PersonalDetailsController',
-	            templateUrl: 'view/profiles/personal_details.html',
+	            controller: '/users/details/PersonalController',
+	            templateUrl: 'view/users/details/personal.html',
 	        })
-	        .when('/edun_details', {
+	        .when('/users/details/edu', {
 
-	            controller: 'EduDetailsController',
-	            templateUrl: 'view/profiles/edu_details.html',
+	            controller: 'EduController',
+	            templateUrl: 'view/users/details/edu.html',
 	        })
-	        .when('/contact_details', {
+	        .when('/users/details/contact', {
 
-	            controller: 'ContactDetailsController',
-	            templateUrl: 'view/profiles/contact_details.html',
+	            controller: 'ContactController',
+	            templateUrl: 'view/users/details/contact.html',
+	        })
+	        .when('/users/details/other', {
+
+	            controller: 'OthersController',
+	            templateUrl: 'view/users/details/other.html',
 	        })
 	        .when('/logout', {
 	        	// templateUrl: " ",
