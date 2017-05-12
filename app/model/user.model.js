@@ -68,7 +68,7 @@ function login(data) {
 
         if(user && bcrypt.compareSync(data.password, user.password)){
           
-            deferred.resolve();
+            deferred.resolve(user);
         }
         else{
 

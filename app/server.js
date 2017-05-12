@@ -51,8 +51,8 @@ app.use(function(req, res, next) {
 
 
 //routes
-app.use('/api/auth', require('./controllers/auth.controller'));
-app.use('/api/users/details/personal/store', function (req, res) {
+app.use('/api/auth', require('./controllers/auth/auth.controller'));
+app.use('/api/users/personal', function (req, res) {
 
   console.log(req.body)
 });

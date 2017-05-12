@@ -46,31 +46,74 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 	            controller: 'AuthController',
 	            templateUrl: 'view/auth/register.html',
+				resolve:{
+
+					loggedIn: function(AuthService, $location){
+						
+						if(!AuthService.checkLogin())
+							return true;
+						else
+							$location.path("/home");
+					}
+				}
+
 	        })
 	        .when('/login', {
 
 	            controller: 'AuthController',
 	            templateUrl: 'view/auth/login.html',
-	        })
-			.when('/users/details/personal', {
+				resolve:{
 
-	            controller: '/users/details/PersonalController',
-	            templateUrl: 'view/users/details/personal.html',
+					loggedIn: function(AuthService, $location){
+						
+						if(!AuthService.checkLogin())
+							return true;
+						else
+							$location.path("/home");
+					}
+				}
+
 	        })
-	        .when('/users/details/edu', {
+			.when('/users_personal', {
+
+	            controller: 'PersonalController',
+	            templateUrl: 'view/users/personal.html',
+				resolve:{
+
+					loggedIn: function(AuthService, $location){
+						
+						if(AuthService.checkLogin())
+							return true;
+						else
+							$location.path("/login");
+					}
+				}
+	        })
+	        .when('/users_edu', {
 
 	            controller: 'EduController',
-	            templateUrl: 'view/users/details/edu.html',
+	            templateUrl: 'view/users/edu.html',
+				resolve:{
+					loggedIn: function(AuthService, $location){
+						
+						if(AuthService.checkLogin())
+							return true;
+						else
+							$location.path("/login");
+					}
+				}
+
 	        })
-	        .when('/users/details/contact', {
+	        .when('/users_contact', {
 
 	            controller: 'ContactController',
-	            templateUrl: 'view/users/details/contact.html',
+	            templateUrl: 'view/users/contact.html',
 	        })
-	        .when('/users/details/other', {
+	        .when('/users_other', {
 
 	            controller: 'OthersController',
-	            templateUrl: 'view/users/details/other.html',
+	            templateUrl: 'view/users/other.html',
+
 	        })
 	        .when('/logout', {
 	        	// templateUrl: " ",
@@ -89,7 +132,6 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 			 	enabled: true,
 			  	requireBase: false
 			});
-
 		}).run(['$http', '$cookies', function($http, $cookies) {
 
 			$http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;

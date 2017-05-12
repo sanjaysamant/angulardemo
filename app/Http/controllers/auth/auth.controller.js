@@ -1,5 +1,5 @@
 app.controller('AuthController', function ( $scope, AuthService, NavigationService, $http, $location, API_URL){
-
+	
 	$scope.navMenu = NavigationService.getNavigation();
 	$scope.resp = {"message" : ""};
 	/**
@@ -9,7 +9,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	$scope.register = function () {
 
 		// $scope.formData.profile_pic = document.getElementById('profile_pic').files[0];
-		$http.post("http://127.0.0.1:8001/api/auth/register", $scope.formData).success(function (response) {
+		$http.post(API_URL + "/api/auth/register", $scope.formData).success(function (response) {
 
 			if(response === "OK"){
 
@@ -36,11 +36,12 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 		$http.post(API_URL + "/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
 			console.log(response);
+
 			if(response === "OK"){
 				
 				sessionStorage.setItem('auth', JSON.stringify({"email":$scope.file.email, "auth" : true}));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
-				$location.path('/users/details/personal').replace();
+				$location.path('users_personal').replace();
 			}else{
 
 				$scope.resp = {"message" : response};

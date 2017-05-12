@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');// get body-parser
 var route = express.Router();	//define our app using express
 var multer = require('multer');
 var validator = require('validator');
-var userModel = require('../model/user.model');
+var userModel = require('../../model/user.model');
 var session = require('express-session');
 route.use(bodyParser.urlencoded({ extended: true })); // for parsing   application/x-www-form-urlencoded
 route.use(bodyParser.json()); // for parsing application/json
@@ -69,9 +69,8 @@ route.post('/login', function (req, res) {
 
     return userModel.login(req.body).then( function () {
       
-      req.session.auth = req.body;
-      //console.log(req.session.email);
-      res.sendStatus(200);
+     req.session.auth = req.body;
+     res.sendStatus(200);
 
     }).catch( function (err) {
 
