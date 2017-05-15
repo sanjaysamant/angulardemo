@@ -48,7 +48,7 @@ route.post('/register', function (req, res) {
     if(req.body.password === req.body.c_password){
 
       //console.log(req.body);
-      return userModel.create(req.body).then( function () {
+      userModel.create(req.body).then( function () {
         
         res.sendStatus(200);
       }).catch( function (err) {
@@ -67,16 +67,21 @@ route.post('/register', function (req, res) {
  */
 route.post('/login', function (req, res) {
 
-    return userModel.login(req.body).then( function () {
+   userModel.login(req.body).then(function(user){
+
+    if(user){
       
-     req.session.auth = req.body;
-     res.sendStatus(200);
+      res.send(user);
+    }else{
 
-    }).catch( function (err) {
+      res.sendStatus(404);
+    }
 
-      res.send(err).status(400);
-    })
-});
+   }).catch (function(err){
+
+     res.send(err);
+   });  
+  });
 
 /**
  * 

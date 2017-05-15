@@ -82,17 +82,30 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 					loggedIn: function(AuthService, $location){
 						
-						if(AuthService.checkLogin())
+						if(AuthService.checkLogin()){
 							return true;
-						else
+							// var $user_id = localStorage.getItem('auth').id;
+							// var $id = $location.search().id;
+							// if($id === $user_id){
+
+							// 	return true;
+							// }
+							// else{
+
+							// 	$location.path('/home');
+							// }
+						}
+						else{
+
 							$location.path("/login");
+						}
 					}
 				}
 	        })
-	        .when('/users_edu', {
+	        .when('/users_edu/abc', {
 
 	            controller: 'EduController',
-	            templateUrl: 'view/users/edu.html',
+	            templateUrl: '/view/users/edu.html',
 				resolve:{
 					loggedIn: function(AuthService, $location){
 						
@@ -120,7 +133,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 	            resolve : {
 	            	redirect: function ($routeParams, $location){
 
-						sessionStorage.removeItem('auth');
+						localStorage.removeItem('auth');
 						$location.path('/login').replace();
  	            	}
 	            }

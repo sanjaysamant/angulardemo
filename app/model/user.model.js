@@ -1,10 +1,9 @@
-var bcrypt = require('bcrypt');
+var passwordHash = require('password-hash');
 var mongo = require('mongoskin');
 var Q = require('q');
 var _ = require('lodash');
 var randomstring = require('randomstring');
 var db = mongo.db('mongodb://127.0.0.1/angulardemo');
-var deferred = Q.defer();
 
 db.bind('demotest');
 // var hash = bcrypt.hashSync("12345", salt);
@@ -22,6 +21,8 @@ module.exports = model;
  * Create User
  */
 function create (userData){
+    
+    var deferred = Q.defer();
 
     db.demotest.findOne({"email" : userData.email}, function (err, user) {
         if (err) deferred.reject(err);
@@ -39,7 +40,8 @@ function create (userData){
     function createUser() {
 
         var user = _.omit(userData, ['password', 'c_password']);
-        user.password = bcrypt.hashSync(userData.password, 10);
+        var hashedPassword = passwordHash.generate(userData.password);
+        user.password = hashedPassword;
         user.api_token = randomstring.generate(50);
         user.registration_code = randomstring.generate(10);
         user.is_active = 1;
@@ -62,12 +64,15 @@ function create (userData){
  */
 function login(data) {
     
+    var deferred = Q.defer();
+
     db.demotest.findOne({"email" : data.email}, function (err, user) {
 
         if (err) deferred.reject(err);
 
-        if(user && bcrypt.compareSync(data.password, user.password)){
-          
+        if(!user) deferred.reject("User not found");
+        if(user && passwordHash.verify(data.password, user.password)){
+
             deferred.resolve(user);
         }
         else{

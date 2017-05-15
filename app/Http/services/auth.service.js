@@ -81,7 +81,7 @@ app.service('AuthService', function (RegisterFactory) {
 					if((fileData.email === item.email) && (fileData.password == item.password)){
 
 						data.push({'username' : item.username, 'login' : true});
-						sessionStorage.setItem('auth', JSON.stringify(data));// set user value in session storage
+						localStorage.setItem('auth', JSON.stringify(data));// set user value in local storage
 						response = true;
 						message = "User Login successfully.";
 					}
@@ -102,7 +102,7 @@ app.service('AuthService', function (RegisterFactory) {
 	 */
 	this.logout = function (){
 
-		sessionStorage.removeItem('auth');
+		localStorage.removeItem('auth');
 
 		return {'message': "Logded out", 'success' : true};
 	}
@@ -114,7 +114,7 @@ app.service('AuthService', function (RegisterFactory) {
 	this.checkLogin = function () {
 
 		var response = false;
-		var auth = (JSON.parse(sessionStorage.getItem('auth')) !== null) ;
+		var auth = (JSON.parse(localStorage.getItem('auth')) !== null) ;
 
 		if (auth)
 			response = true;

@@ -2,6 +2,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	
 	$scope.navMenu = NavigationService.getNavigation();
 	$scope.resp = {"message" : ""};
+	$scope.userId = null;
 	/**
 	 * [register a new user]
 	 * @return {[boolean]} [user create true or false]
@@ -35,17 +36,16 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	$scope.login = function () {
 
 		$http.post(API_URL + "/api/auth/login", JSON.stringify($scope.file)).success(function (response) {
-			console.log(response);
 
-			if(response === "OK"){
-				
-				sessionStorage.setItem('auth', JSON.stringify({"email":$scope.file.email, "auth" : true}));// set user value in session storage
+			if(response._id){//check the user id exists or not
+
+				localStorage.setItem('auth', JSON.stringify({"email":response.email, "auth" : true, "id" : response._id}));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
-				$location.path('users_personal').replace();
+				$location.path('users_personal/').replace();
 			}else{
 
 				$scope.resp = {"message" : response};
-				$location.path('/login').replace();
+				$location.path('/login').search({id : response._id});
 			}
 			// return;
 			// $scope.resp = AuthService.login($scope.file);
