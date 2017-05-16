@@ -4,9 +4,9 @@ app.controller('PersonalController', function ( $scope, $routeParams, Navigation
 	// console.log($routeParams.id)
 	$scope.storePersonal = function () {
 
-		$http.post(API_URL + "/api/users/personal/" + $routeParams.id, JSON.stringify($scope.formData), function (response){
+		$http.put(API_URL + "/api/users/personal/" + $routeParams.id, JSON.stringify($scope.formData), function (response){
 			
-			// console.log(response);
+			console.log(response);
 		});
 	}
 

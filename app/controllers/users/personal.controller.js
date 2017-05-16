@@ -9,9 +9,14 @@ route.use(bodyParser.urlencoded({ extended: true })); // for parsing   applicati
 route.use(bodyParser.json()); // for parsing application/json
 // route.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
-route.post("/personal/:id", function (req, res) {
-    console.log(SESSION.user);
+route.put("/personal/:id", function (req, res) {
 
-    // console.log(req.session);
+    userModel.update(req.params.id, req.body).then( function () {
+        
+        res.sendStatus(200)
+    }).catch( function ( err ){
+
+      res.send(err).status(400);
+    });
 });
 module.exports = route;

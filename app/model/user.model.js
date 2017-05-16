@@ -17,8 +17,8 @@ model.edit      = edit;
 module.exports = model;
 
 /**
- * 
- * Create User
+ * Create new user
+ * @param {request data} userData 
  */
 function create (userData){
     
@@ -59,8 +59,8 @@ function create (userData){
 }
 
 /**
- * 
- * User Login
+ * Login user
+ * @param {user request data} data 
  */
 function login(data) {
     
@@ -83,8 +83,24 @@ function login(data) {
 
     return deferred.promise;
 }
+/**
+ * Update User
+ * @param {user id} id 
+ * @param {user data} data 
+ */
+function update (id, data){
 
-function update (){
+    var deferred = Q.defer();
+
+    db.demotest.update({_id : mongo.helper.toObjectID(id)}, {$set:{personal_details : data}}, function (err, user) {
+
+        if (err) deferred.reject(err);
+        console.log(user);
+        deferred.resolve();
+
+    });
+
+    return deferred.promise;
 
 }
 
