@@ -41,11 +41,11 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 				localStorage.setItem('auth', JSON.stringify({"email":response.email, "auth" : true, "id" : response._id}));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
-				$location.path('users_personal/').replace();
+				$location.path('/users_personal/'+ response._id)//.search({id : response._id});
 			}else{
 
 				$scope.resp = {"message" : response};
-				$location.path('/login').search({id : response._id});
+				$location.path('/login');
 			}
 			// return;
 			// $scope.resp = AuthService.login($scope.file);
@@ -61,18 +61,21 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	 * [logout description]
 	 * @return {[type]} [description]
 	 */
-	$scope.logout = function () {
+	// $scope.logout = function () {
+	// 	console.log("logout");
+	// 	return ;
+	// 		$location.path('/login').replace();
 
-		$http.get(API_URL + "api/auth/logout").success(function (response) {
+	// 	$http.get(API_URL + "api/auth/logout").success(function (response) {
 
-			sessionStorage.removeItem('auth')
-			// console.log("logout");
-			// $scope.resp = AuthService.logout();
-			// console.log($scope.resp);
-    		// FlashFactory.setMessage($scope.resp.message);
-			$location.path('/login').replace();
-		});
-	}
+	// 		sessionStorage.removeItem('auth')
+	// 		// console.log("logout");
+	// 		// $scope.resp = AuthService.logout();
+	// 		// console.log($scope.resp);
+    // 		// FlashFactory.setMessage($scope.resp.message);
+	// 		$location.path('/login').replace();
+	// 	});
+	// }
 	/**
 	 * [checkLogin description]
 	 * @return {[type]} [description]

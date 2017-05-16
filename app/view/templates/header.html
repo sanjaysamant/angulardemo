@@ -9,7 +9,7 @@
       <a href="/work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
       <a href="/pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a>
       <a href="/contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a> -->
-      <a ng-repeat="nav in navMenu" href="{{nav.url}}" class="w3-bar-item w3-button" ng-show="{{nav.show}}" ng-click=""> {{nav.title}}</a>
+      <a ng-repeat="nav in navMenu" href="{{nav.url}}" class="w3-bar-item w3-button" ng-show="{{nav.show}}" target="{{nav.target}}" ng-click=""> {{nav.title}}</a>
           <!-- <a href="/login" class="w3-bar-item w3-button"><i class=""></i> LOGIN</a>
           <a href="/register" class="w3-bar-item w3-button"><i class="fa fa-user"></i> REGISTER</a> -->
     </div>

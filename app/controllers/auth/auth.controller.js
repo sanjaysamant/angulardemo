@@ -52,7 +52,7 @@ route.post('/register', function (req, res) {
         
         res.sendStatus(200);
       }).catch( function (err) {
-        console.log(err);
+        // console.log(err);
           res.send(err).status(400);
       });
     }else{
@@ -67,16 +67,18 @@ route.post('/register', function (req, res) {
  */
 route.post('/login', function (req, res) {
 
-   userModel.login(req.body).then(function(user){
+   return userModel.login(req.body).then(function(user){
 
     if(user){
-      
+
+      SESSION = req.session;
+      SESSION.user = user;
       res.send(user);
     }else{
 
       res.sendStatus(404);
     }
-
+    // console.log(req.session);
    }).catch (function(err){
 
      res.send(err);
@@ -89,8 +91,7 @@ route.post('/login', function (req, res) {
  */
 route.get('/logout', function (req, res) {
 
-
-    req.session.destroy();
+    console.log(req.session);
     res.sendStatus(200);
 });
 
