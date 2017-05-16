@@ -6,6 +6,34 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 			$httpProvider.defaults.headers.post = {};
 			$httpProvider.defaults.headers.put = {};
 			$httpProvider.defaults.headers.patch = {};
+
+			/**
+			 * 
+			 * Checks for url access
+			 */
+			resolver = function (access){
+
+				return {
+					load: function($q, AuthService, $location){
+						if(access){
+
+							return true
+						}else{
+
+							if(AuthService.checkLogin()){
+
+								return true;
+							}
+							else{
+
+								$location.path("/login");
+							}
+						}
+					}
+				}
+				
+			}
+
 			$routeProvider
 			.when('/', {
 
@@ -78,40 +106,21 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 	            controller: 'PersonalController',
 	            templateUrl: '/view/users/personal.html',
-	        })
-	        .when('/users_edu/abc', {
-
-	            controller: 'EduController',
-	            templateUrl: '/view/users/edu.html',
-				resolve:{
-					loggedIn: function(AuthService, $location){
-						
-						if(AuthService.checkLogin())
-							return true;
-						else
-							$location.path("/login");
-					}
-				}
-
-	        })
-	        .when('/users_contact', {
-
-	            controller: 'ContactController',
-	            templateUrl: '/view/users/contact.html',
-	        })
-	        .when('/users_other', {
-
-	            controller: 'OthersController',
-	            templateUrl: '/view/users/other.html',
-
-	        })
+				resolve:resolver(false)
+			})
 	        .when('/logout', {
 	        	// templateUrl: " ",
+				// controller: 'AuthController'
 	            resolve : {
-	            	redirect: function ($routeParams, $location){
+	            	logout: function ($routeParams, $location, $http, API_URL){
+						$http.get(API_URL + "/api/auth/logout").success(function (response) {
 
-						localStorage.removeItem('auth');
-						$location.path('/login').replace();
+							if(response === "OK"){
+								
+								localStorage.removeItem('auth');
+								$location.path('/login').replace();
+							}
+						})
  	            	}
 	            }
 	        })

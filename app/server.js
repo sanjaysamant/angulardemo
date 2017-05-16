@@ -7,8 +7,8 @@ var session = require('express-session');
 // var morgan = require('morgan'); //use to see requests
 // var assert = require('assert');
 // var path = require('path');
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // app.use(cors());
 
 /**
@@ -52,10 +52,7 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/api/auth', require('./controllers/auth/auth.controller'));
-app.use('/api/users/personal', function (req, res) {
-
-  console.log(req.body)
-});
+app.use('/api/users', require('./controllers/users/personal.controller'));
 // app.use('/api', require('./controllers/users.controller'));
 
 // app.get('/api', function (req, res) {

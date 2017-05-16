@@ -5,15 +5,15 @@ app.service('NavigationService', function (AuthService, $location) {
 	 */
 	this.getNavigation = function (){
 
-		var navMenu = [{title : "ABOUT", url : '/about', show : true}, {title : "TEAM", url : '/team', show : true}, {title : "WORK", url : '/work', show : true}, {title : "PRICING", url : '/price', show : true}, {title : 'CONTACT', url : '/contact', show : true}, ];
+		var navMenu = [{title : "ABOUT", url : '/about', show : true, target : ""}, {title : "TEAM", url : '/team', show : true, target : ""}, {title : "WORK", url : '/work', show : true, target : ""}, {title : "PRICING", url : '/price', show : true, target : ""}, {title : 'CONTACT', url : '/contact', show : true, target : ""}, ];
 
 		if(AuthService.checkLogin()){
 			
-			navMenu.push({title : 'LOGOUT', url : '/logout', show : AuthService.checkLogin()});
+			navMenu.push({title : 'LOGOUT', url : '/logout', show : AuthService.checkLogin(), target : "_self"});
 		}
 		else{
 
-			navMenu.push({title : 'LOGIN', url : '/login', show : !AuthService.checkLogin()}, {title : 'REGISTER', url : '/register', show : !AuthService.checkLogin()});
+			navMenu.push({title : 'LOGIN', url : '/login', show : !AuthService.checkLogin(), target : ""}, {title : 'REGISTER', url : '/register', show : !AuthService.checkLogin(), target : ""});
 		}
 
 		return navMenu;
