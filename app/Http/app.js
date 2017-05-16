@@ -9,43 +9,43 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 			$routeProvider
 			.when('/', {
 
-				templateUrl : "view/home.html",
+				templateUrl : "/view/home.html",
 				controller : 'PagesController'
 			})
 			.when('/home', {
 
-				templateUrl : "view/home.html",
+				templateUrl : "/view/home.html",
 				controller : 'PagesController'
 			})
 			.when('/about', {
 
-				templateUrl : "view/about.html",
+				templateUrl : "/view/about.html",
 				controller : 'PagesController'
 			})
 			.when('/team', {
 
-				templateUrl : "view/team.html",
+				templateUrl : "/view/team.html",
 				controller : 'PagesController'
 			})
 			.when('/work', {
 
-				templateUrl : "view/work.html",
+				templateUrl : "/view/work.html",
 				controller : 'PagesController'
 			})
 			.when('/price', {
 
-				templateUrl : "view/price.html",
+				templateUrl : "/view/price.html",
 				controller : 'PagesController'
 			})
 			.when('/contact', {
 
-				templateUrl : "view/contact.html",
+				templateUrl : "/view/contact.html",
 				controller : 'PagesController'
 			})
 	        .when('/register', {
 
 	            controller: 'AuthController',
-	            templateUrl: 'view/auth/register.html',
+	            templateUrl: '/view/auth/register.html',
 				resolve:{
 
 					loggedIn: function(AuthService, $location){
@@ -61,7 +61,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 	        .when('/login', {
 
 	            controller: 'AuthController',
-	            templateUrl: 'view/auth/login.html',
+	            templateUrl: '/view/auth/login.html',
 				resolve:{
 
 					loggedIn: function(AuthService, $location){
@@ -74,33 +74,10 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				}
 
 	        })
-			.when('/users_personal', {
+			.when('/users_personal/:id', {
 
 	            controller: 'PersonalController',
-	            templateUrl: 'view/users/personal.html',
-				resolve:{
-
-					loggedIn: function(AuthService, $location){
-						
-						if(AuthService.checkLogin()){
-							return true;
-							// var $user_id = localStorage.getItem('auth').id;
-							// var $id = $location.search().id;
-							// if($id === $user_id){
-
-							// 	return true;
-							// }
-							// else{
-
-							// 	$location.path('/home');
-							// }
-						}
-						else{
-
-							$location.path("/login");
-						}
-					}
-				}
+	            templateUrl: '/view/users/personal.html',
 	        })
 	        .when('/users_edu/abc', {
 
@@ -120,12 +97,12 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 	        .when('/users_contact', {
 
 	            controller: 'ContactController',
-	            templateUrl: 'view/users/contact.html',
+	            templateUrl: '/view/users/contact.html',
 	        })
 	        .when('/users_other', {
 
 	            controller: 'OthersController',
-	            templateUrl: 'view/users/other.html',
+	            templateUrl: '/view/users/other.html',
 
 	        })
 	        .when('/logout', {
