@@ -104,14 +104,25 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 	        })
 			.when('/users_personal/:id', {
 
-	            controller: 'PersonalController',
+	            controller: 'UsersController',
 	            templateUrl: '/view/users/personal.html',
 				resolve:resolver(false)
 			})
+			.when('/users_edu/:id', {
+
+	            controller: 'UsersController',
+	            templateUrl: '/view/users/edu.html',
+				resolve:resolver(false)
+			})
+			.when('/users_contact/:id', {
+
+	            controller: 'UsersController',
+	            templateUrl: '/view/users/contact.html',
+				resolve:resolver(false)
+			})
 	        .when('/logout', {
-	        	// templateUrl: " ",
-				// controller: 'AuthController'
-	            resolve : {
+				
+				resolve : {
 	            	logout: function ($routeParams, $location, $http, API_URL){
 						$http.get(API_URL + "/api/auth/logout").success(function (response) {
 

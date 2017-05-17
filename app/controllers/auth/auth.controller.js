@@ -72,13 +72,16 @@ route.post('/login', function (req, res) {
     if(user){
 
       SESSION = req.session;
-      SESSION.user = user;
-      res.send(user);
+      SESSION._id = user._id;
+      SESSION.username = user.username;
+      SESSION.email = user.email;
+      SESSION.user_type = user.user_type;
+      
+      res.send(SESSION);
     }else{
 
       res.sendStatus(404);
     }
-    // console.log(req.session);
    }).catch (function(err){
 
      res.send(err);

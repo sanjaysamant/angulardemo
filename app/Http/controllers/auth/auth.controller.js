@@ -39,7 +39,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 
 			if(response._id){//check the user id exists or not
 
-				localStorage.setItem('auth', JSON.stringify({"email":response.email, "auth" : true, "id" : response._id}));// set user value in session storage
+				localStorage.setItem('auth', JSON.stringify(response));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
 				$location.path('/users_personal/'+ response._id)//.search({id : response._id});
 			}else{

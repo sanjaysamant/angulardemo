@@ -91,17 +91,15 @@ function login(data) {
 function update (id, data){
 
     var deferred = Q.defer();
-
-    db.demotest.update({_id : mongo.helper.toObjectID(id)}, {$set:{personal_details : data}}, function (err, user) {
+    db.demotest.update({_id : mongo.helper.toObjectID(id)}, {$set: data}, function (err, result) {
 
         if (err) deferred.reject(err);
-        console.log(user);
-        deferred.resolve();
+
+       if(result) deferred.resolve();
 
     });
 
     return deferred.promise;
-
 }
 
 function destroy() {

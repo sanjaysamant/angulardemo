@@ -11,12 +11,26 @@ route.use(bodyParser.json()); // for parsing application/json
 
 route.put("/personal/:id", function (req, res) {
 
-    userModel.update(req.params.id, req.body).then( function () {
-        
-        res.sendStatus(200)
+    data = {};
+    data['personal_details'] = req.body;
+    userModel.update(req.params.id, data).then( function () {
+
+        res.sendStatus(200);
     }).catch( function ( err ){
 
       res.send(err).status(400);
     });
 });
+
+// route.put("/contact/:id", function (req, res) {
+
+//     userModel.update(req.params.id, "contact_details", req.body).then( function () {
+        
+//         res.sendStatus(200)
+//     }).catch( function ( err ){
+
+//       res.send(err).status(400);
+//     });
+// });
+
 module.exports = route;

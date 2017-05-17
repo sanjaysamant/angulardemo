@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/api/auth', require('./controllers/auth/auth.controller'));
-app.use('/api/users', require('./controllers/users/personal.controller'));
+app.use('/api/users', require('./controllers/users/users.controller'));
 // app.use('/api', require('./controllers/users.controller'));
 
 // app.get('/api', function (req, res) {
