@@ -106,18 +106,28 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/personal.html',
+				pageTitle: personal_details,
 				resolve:resolver(false)
 			})
 			.when('/users_edu/:id', {
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/edu.html',
+				pageTitle: 'edu_details',
 				resolve:resolver(false)
 			})
 			.when('/users_contact/:id', {
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/contact.html',
+				pageTitle: 'contact_details',
+				resolve:resolver(false)
+			})
+			.when('/other/:id', {
+
+	            controller: 'UsersController',
+	            templateUrl: '/view/users/other.html',
+				pageTitle: 'other',
 				resolve:resolver(false)
 			})
 	        .when('/logout', {

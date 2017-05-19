@@ -12,7 +12,7 @@
 
       <h3 class="w3-center">Contact Details</h3>
       <p class="w3-center w3-large">Please enter the contact details:</p>
-      <form ng-submit="create()" name="contactDetailsForm">
+      <form ng-submit="storeContact()" name="contactDetailsForm">
         <div class="container">
 
           <label><b>Mobile Number</b></label>
@@ -45,8 +45,8 @@
           <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The City is required.</span>
 
           <label><b>State</b></label>
-          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
-          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The State is required.</span>
+          <input type="text" placeholder="State" required name="state" ng-model="formData.state">
+          <span ng-show="contactDetailsForm.state.$touched && contactDetailsForm.state.$invalid">The State is required.</span>
 
           <label><b>Country</b></label>
           <input type="text" placeholder="Country" required name="country" ng-model="formData.country">

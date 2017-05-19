@@ -12,47 +12,30 @@
 
       <h3 class="w3-center">Education Details</h3>
       <p class="w3-center w3-large">Please enter the education details:</p>
-      <form ng-submit="create()" name="contactDetailsForm">
+      <form ng-submit="storeEdu()" name="eduDetailsForm">
         <div class="container">
 
-          <label><b>Mobile Number</b></label>
-          <input type="text" placeholder="Mobile Number" required name="mobile_phone" ng-model="formData.mobile_phone">
-          <span ng-show="contactDetailsForm.mobile_no.$touched && contactDetailsForm.mobile_no.$invalid">The Mobile Number is required.</span>
+          <label><b>College</b></label>
+          <input type="text" placeholder="College" required name="college" ng-model="formData.college">
+          <span ng-show="eduDetailsForm.college.$touched && eduDetailsForm.college.$invalid">The College is required.</span>
 
-          <label><b>Office Phone Number</b></label>
-          <input type="text" placeholder="Office Phone Number" name="office_phone" ng-model="formData.office_phone">
+          <label><b>Course Name</b></label>
+          <input type="text" placeholder="Course Name" name="course_name" ng-model="formData.course_name">
+          <span ng-show="eduDetailsForm.course_name.$touched && eduDetailsForm.course_name.$invalid">The Course Name is required.</span>
 
-          <label><b>Home Phone Number</b></label>
-          <input type="text" placeholder="Home Phone Number" name="home_phone" ng-model="formData.home_phone">
+          <label><b>Start Date</b></label>
+          <input type="date" placeholder="Start Date" name="start_date" ng-model="formData.start_date">
+          <span ng-show="eduDetailsForm.start_date.$touched && eduDetailsForm.start_date.$invalid">The Start Date is required.</span>
 
-          <label><b>House Number</b></label>
-          <input type="text" placeholder="House Number" required name="h_no" ng-model="formData.h_no">
-          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The House Number is required.</span>
+          <label><b>End Date</b></label>
+          <input type="date" placeholder="End Date" required name="end_date" ng-model="formData.end_date">
+          <span ng-show="eduDetailsForm.end_date.$touched && eduDetailsForm.end_date.$invalid">The End Date is required.</span>
 
-          <label><b>Street Number/Address</b></label>
-          <input type="text" placeholder="Street Number/Address" required name="street_no" ng-model="formData.street_no">
-          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The Street address is required.</span>
- 
-          <label><b>Landmark</b></label>
-          <input type="text" placeholder="Landmark" name="landmark" ng-model="formData.Landmark">
+          <label><b>Grade/percentage</b></label>
+          <input type="number" placeholder="Grade" required name="grade" ng-model="formData.grade" min="0">
+          <span ng-show="eduDetailsForm.grade.$touched && eduDetailsForm.grade.$invalid">The Street address is required.</span>
 
-          <label><b>Zip</b></label>
-          <input type="text" placeholder="Zip" required name="zip" ng-model="formData.zip">
-          <span ng-show="contactDetailsForm.zip.$touched && contactDetailsForm.zip.$invalid">The Zip is required.</span>
-
-          <label><b>City</b></label>
-          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
-          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The City is required.</span>
-
-          <label><b>State</b></label>
-          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
-          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The State is required.</span>
-
-          <label><b>Country</b></label>
-          <input type="text" placeholder="Country" required name="country" ng-model="formData.country">
-          <span ng-show="contactDetailsForm.country.$touched && contactDetailsForm.country.$invalid">The Country is required.</span>
-
-          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Submit</button>
+          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Next</button>
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         </div>
 

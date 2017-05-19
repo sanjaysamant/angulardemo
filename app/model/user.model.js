@@ -13,9 +13,29 @@ model.create    = create;
 model.update    = update;
 model.destroy   = destroy;
 model.edit      = edit; 
+model.getByID   = getByID;
 
 module.exports = model;
 
+
+/**
+ * Get User data by id
+ */
+function getByID(id){
+
+    var deferred = Q.defer();
+
+    db.demotest.findById(id, function(err, user){
+
+        if(err) deferred.reject(err);
+
+        if(!user) deferred.reject("User not found");
+
+        deferred.resolve(user);
+    })
+
+    return deferred.promise;
+}
 /**
  * Create new user
  * @param {request data} userData 
@@ -88,14 +108,14 @@ function login(data) {
  * @param {user id} id 
  * @param {user data} data 
  */
-function update (id, data){
+function update(id, data){
 
     var deferred = Q.defer();
     db.demotest.update({_id : mongo.helper.toObjectID(id)}, {$set: data}, function (err, result) {
 
         if (err) deferred.reject(err);
 
-       if(result) deferred.resolve();
+        deferred.resolve("OLLLL");
 
     });
 
@@ -109,6 +129,11 @@ function destroy() {
 function edit() {
     
 }
+
+
+
+
+
 // var insertTestDoc = function (db, callback) {
 //     //console.log("one"); return ;
 //     var collection = db.collection('demotest');

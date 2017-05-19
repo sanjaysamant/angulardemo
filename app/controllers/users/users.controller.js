@@ -9,28 +9,73 @@ route.use(bodyParser.urlencoded({ extended: true })); // for parsing   applicati
 route.use(bodyParser.json()); // for parsing application/json
 // route.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
+/**
+ * 
+ */
+route.get("/:id", function (req, res){
+
+    userModel.getByID(req.params.id).then( function ( result) {
+
+        res.send(result);
+    }).catch (function (err){
+
+      res.send(err).status(400);
+
+    })
+})
+/**
+ * Personal Details
+ */
 route.put("/personal/:id", function (req, res) {
 
-    data = {};
-    data['personal_details'] = req.body;
-    userModel.update(req.params.id, data).then( function () {
+    userModel.update(req.params.id, req.body).then( function (result) {
 
-        res.sendStatus(200);
+        res.send("OK");
+    }).catch( function ( err ){
+
+      res.send(err).status(400);
+    });
+});
+/**
+ * Educational Details
+ */
+route.put("/edu/:id", function (req, res) {
+
+    userModel.update(req.params.id, req.body).then( function () {
+        
+        res.sendStatus("OK")
     }).catch( function ( err ){
 
       res.send(err).status(400);
     });
 });
 
-// route.put("/contact/:id", function (req, res) {
+/**
+ * Contact Details
+ */
+route.put("/contact/:id", function (req, res) {
 
-//     userModel.update(req.params.id, "contact_details", req.body).then( function () {
+    userModel.update(req.params.id, req.body).then( function () {
         
-//         res.sendStatus(200)
-//     }).catch( function ( err ){
+        res.sendStatus(200)
+    }).catch( function ( err ){
 
-//       res.send(err).status(400);
-//     });
-// });
+      res.send(err).status(400);
+    });
+});
+
+/**
+ * Other Details
+ */
+route.put("/other/:id", function (req, res) {
+
+    userModel.update(req.params.id, req.body).then( function () {
+        
+        res.sendStatus(200)
+    }).catch( function ( err ){
+
+      res.send(err).status(400);
+    });
+});
 
 module.exports = route;

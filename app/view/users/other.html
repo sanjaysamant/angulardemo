@@ -10,47 +10,57 @@
         </div>
       </div>
 
-      <h3 class="w3-center">Contact Details</h3>
+      <h3 class="w3-center">Other Details</h3>
       <p class="w3-center w3-large">Please enter the contact details:</p>
-      <form ng-submit="create()" name="contactDetailsForm">
+      <form ng-submit="storeOther()" name="otherDetailsForm">
         <div class="container">
 
-          <label><b>Mobile Number</b></label>
-          <input type="text" placeholder="Mobile Number" required name="mobile_phone" ng-model="formData.mobile_phone">
-          <span ng-show="contactDetailsForm.mobile_no.$touched && contactDetailsForm.mobile_no.$invalid">The Mobile Number is required.</span>
+          <label><b>Work Type</b></label>
+          <select required name="work_type[]" ng-model="formData.work_type[]" multiple>
+            <option value="">-Select Work Type-</option>
+            <option value="web_application">Web Application</option>
+            <option value="mobile_application">Mobile Application</option>
+            <option value="win_application">Windows Application</option>
+            <option value="desktop_application">Desktop Application</option>
+            <option value="db_admin">Database Administrator</option>
+            <option value="front_end">Front End</option>
+          </select>
+          <label><b>Skills</b></label>
+          <select required name="skills[]" ng-model="formData.skills[]" multiple>
+            <option value="">-Select Skills-</option>
+            <option value="php">PHP</option>
+            <option value="jsp">JSP</option>
+            <option value="asp">ASP</option>
+            <option value="python">Python</option>
+            <option value="javascript">Javascript</option>
+            <option value="angularjs">AngularJS</option>
+            <option value="angularjs">Angular2</option>
+            <option value="reactjs">ReactJS</option>
+            <option value="mysql">MySQL</option>
+            <option value="mongodb">MongoDB</option>
+            <option value="ms_sql">Microsoft SQL</option>
+            <option value="webservices">Webservices</option>
+            <option value="rest">REST</option>
+            <option value="soap">SOAP</option>
+            <option value="java">JAVA</option>
+            <option value="dotnet">.NET</option>
+            <option value="c#">C#</option>
+            <option value="vbscript">VBScript</option>
+            <option value="jquery">jQuery</option>
+            <option value="c">C</option>
+            <option value="c++">C++</option>
+            <option value="objectivec">Objective C</option>
+            <option value="swift">Swift</option>
+            <option value="android">Android</option>
+            <option value="ios">IOS</option>
+            <option value="cobol">COBOL</option>
+            <option value="forton">FORTON</option>
+            <option value="meanjs">MEANJS</option>
+          </select>
 
-          <label><b>Office Phone Number</b></label>
-          <input type="text" placeholder="Office Phone Number" name="office_phone" ng-model="formData.office_phone">
-
-          <label><b>Home Phone Number</b></label>
-          <input type="text" placeholder="Home Phone Number" name="home_phone" ng-model="formData.home_phone">
-
-          <label><b>House Number</b></label>
-          <input type="text" placeholder="House Number" required name="h_no" ng-model="formData.h_no">
-          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The House Number is required.</span>
-
-          <label><b>Street Number/Address</b></label>
-          <input type="text" placeholder="Street Number/Address" required name="street_no" ng-model="formData.street_no">
-          <span ng-show="contactDetailsForm.h_no.$touched && contactDetailsForm.first_name.$invalid">The Street address is required.</span>
- 
-          <label><b>Landmark</b></label>
-          <input type="text" placeholder="Landmark" name="landmark" ng-model="formData.Landmark">
-
-          <label><b>Zip</b></label>
-          <input type="text" placeholder="Zip" required name="zip" ng-model="formData.zip">
-          <span ng-show="contactDetailsForm.zip.$touched && contactDetailsForm.zip.$invalid">The Zip is required.</span>
-
-          <label><b>City</b></label>
-          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
-          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The City is required.</span>
-
-          <label><b>State</b></label>
-          <input type="text" placeholder="City" required name="city" ng-model="formData.city">
-          <span ng-show="contactDetailsForm.city.$touched && contactDetailsForm.city.$invalid">The State is required.</span>
-
-          <label><b>Country</b></label>
-          <input type="text" placeholder="Country" required name="country" ng-model="formData.country">
-          <span ng-show="contactDetailsForm.country.$touched && contactDetailsForm.country.$invalid">The Country is required.</span>
+          <label><b>Rate/Hour</b></label>
+          <input type="number" placeholder="Rate" name="rate" ng-model="formData.rate">
+          <span ng-show="otherDetailsForm.rate.$touched && otherDetailsForm.rate.$invalid">The Rate is required.</span>
 
           <button type="submit" onclick="document.getElementById('id01').style.display='block'">Submit</button>
           <!-- <input type="checkbox" checked="checked"> Remember me -->

@@ -94,7 +94,7 @@ route.post('/login', function (req, res) {
  */
 route.get('/logout', function (req, res) {
 
-    console.log(req.session);
+    // console.log(req.session);
     res.sendStatus(200);
 });
 

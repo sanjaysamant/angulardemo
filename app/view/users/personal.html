@@ -18,9 +18,16 @@
           <!--<i ng-show="formData.upload_form.proformData_pic.$error.required">*required</i><br>
           <i ng-show="formData.upload_form.proformData_pic.$error.maxSize">formData too large 
             {{up.formData.size / 1000000|number:1}}MB: max 20M</i>-->
-          <label><b>First Name</b></label>
-          <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
-          <span ng-show="personalDetailsForm.first_name.$touched && personalDetailsForm.first_name.$invalid">The First Name is required.</span>
+          <div>
+            <label><b>First Name</b></label>{{page_type| json}}
+            <div ng-if="page_type === 'add'">
+              <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
+              <span ng-show="personalDetailsForm.first_name.$touched && personalDetailsForm.first_name.$invalid">The First Name is required.</span>
+            </div>
+            <div ng-if="page_type === 'edit'">
+              <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
+            </div>
+          </div>
 
           <label><b>Last Name</b></label>
           <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
@@ -33,7 +40,7 @@
           <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
           <span ng-show="personalDetailsForm.d_o_b.$touched && personalDetailsForm.d_o_b.$invalid">The First Name is required.</span>
 
-          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Submit</button>
+          <button type="submit" onclick="document.getElementById('id01').style.display='block'">Next</button>
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         </div>
 
