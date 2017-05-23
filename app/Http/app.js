@@ -106,7 +106,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/personal.html',
-				pageTitle: personal_details,
+				pageTitle: 'personal_details',
 				resolve:resolver(false)
 			})
 			.when('/users_edu/:id', {
