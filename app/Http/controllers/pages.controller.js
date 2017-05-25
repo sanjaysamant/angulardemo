@@ -2,4 +2,15 @@ app.controller('PagesController', function ($scope, NavigationService, $http, AP
 	
 	$scope.navMenu = NavigationService.getNavigation();
 
+	/**
+	 * 
+	 */
+	$scope.developers = function () {
+
+		$http.get(API_URL + "/api/developers/"). success(function (response){
+
+
+		});
+	}
+
 });

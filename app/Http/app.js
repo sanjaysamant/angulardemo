@@ -65,6 +65,11 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				templateUrl : "/view/price.html",
 				controller : 'PagesController'
 			})
+			.when('/developers', {
+
+				templateUrl : "/view/developers.html",
+				controller : 'PagesController'
+			})
 			.when('/contact', {
 
 				templateUrl : "/view/contact.html",

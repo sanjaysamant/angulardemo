@@ -3,7 +3,7 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 	$scope.navMenu = NavigationService.getNavigation();
 
 	$scope.page_type = UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle);
-	
+	console.log($scope.page_type)	
 
 	/**
 	 * store personal info
@@ -13,7 +13,7 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 		var data = {};
 		data['personal_details'] = $scope.formData
 		$http.put(API_URL + "/api/users/personal/" + $routeParams.id, data). success(function (response){
-			console.log("true" + response);
+			// console.log("true" + response);
 			if(response == "OK"){
 
 				$location.path("/users_edu/" + $routeParams.id)
@@ -35,7 +35,7 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 		data['edu_details'] = $scope.formData
 
 		$http.put(API_URL + "/api/users/edu/" + $routeParams.id, data). success(function (response){
-			console.log("true" + response);
+			// console.log("true" + response);
 			if(response == "OK"){
 
 				$location.path("/users_contact/" + $routeParams.id)
@@ -56,7 +56,7 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 		data['contact_details'] = $scope.formData
 		console.log(data)
 		$http.put(API_URL + "/api/users/contact/" + $routeParams.id, $scope.formData). success(function (response){
-			console.log("true" + response);
+			
 			if(response == "OK"){
 
 				var user = localStorage.getItem('auth');

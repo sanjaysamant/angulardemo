@@ -5,7 +5,7 @@ app.service('NavigationService', function (AuthService, $location) {
 	 */
 	this.getNavigation = function (){
 
-		var navMenu = [{title : "ABOUT", url : '/about', show : true, target : ""}, {title : "TEAM", url : '/team', show : true, target : ""}, {title : "WORK", url : '/work', show : true, target : ""}, {title : "PRICING", url : '/price', show : true, target : ""}, {title : 'CONTACT', url : '/contact', show : true, target : ""}, ];
+		var navMenu = [{title : "ABOUT", url : '/about', show : true, target : ""}, {title : "TEAM", url : '/team', show : true, target : ""}, {title : "WORK", url : '/work', show : true, target : ""}, {title : "PRICING", url : '/price', show : true, target : ""}, {title : 'CONTACT', url : '/contact', show : true, target : ""}, {title : 'DEVELOPERS', url : '/developers', show : true, target : ""}];
 
 		if(AuthService.checkLogin()){
 			

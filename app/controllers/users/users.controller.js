@@ -10,13 +10,13 @@ route.use(bodyParser.json()); // for parsing application/json
 // route.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 /**
- * 
+ * Get user api
  */
 route.get("/:id", function (req, res){
 
     userModel.getByID(req.params.id).then( function ( result) {
-
-        res.send(result);
+        //console.log(req.body);
+        // res.send(result.req.pageTitle);
     }).catch (function (err){
 
       res.send(err).status(400);
