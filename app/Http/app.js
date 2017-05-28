@@ -65,10 +65,15 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				templateUrl : "/view/price.html",
 				controller : 'PagesController'
 			})
-			.when('/developers', {
+			.when('/users/:user_type', {
 
 				templateUrl : "/view/developers.html",
-				controller : 'PagesController'
+				controller : 'UsersController'
+			})
+			.when('/user/show/:id', {
+
+				templateUrl : "/view/user.details.html",
+				controller : 'UsersController'
 			})
 			.when('/contact', {
 
@@ -107,6 +112,13 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				}
 
 	        })
+			.when('/dashboard', {
+
+	            controller: 'DashboardController',
+	            templateUrl: '/view/dashboard/index.html',
+				pageTitle: 'dashboard',
+				resolve:resolver(false)
+			})
 			.when('/users_personal/:id', {
 
 	            controller: 'UsersController',
@@ -128,7 +140,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				pageTitle: 'contact_details',
 				resolve:resolver(false)
 			})
-			.when('/other/:id', {
+			.when('/users_other/:id', {
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/other.html',

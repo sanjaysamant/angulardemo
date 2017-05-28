@@ -7,22 +7,24 @@ var db = mongo.db('mongodb://127.0.0.1/angulardemo');
 
 db.bind('demotest');
 // var hash = bcrypt.hashSync("12345", salt);
-var model       = {};
-model.login     = login;
-model.create    = create;
-model.update    = update;
-model.destroy   = destroy;
-model.edit      = edit; 
-model.getByID   = getByID;
+var model               = {};
+model.login             = login;
+model.create            = create;
+model.update            = update;
+model.destroy           = destroy;
+model.edit              = edit; 
+model.getByID           = getByID;
+model.getUsersByType    = getUsersByType;
+model.getUserByID       = getUserByID;
 
 module.exports = model;
 
-
 /**
- * Get User data by id
+ * Get user detail by
+ * @param {mongo object id} id 
  */
-function getByID(id){
-
+function getUserByID(id){
+    
     var deferred = Q.defer();
 
     db.demotest.findById(id, function(err, user){
@@ -33,6 +35,50 @@ function getByID(id){
 
         deferred.resolve(user);
     })
+
+    return deferred.promise;
+
+}
+/**
+ * Get User data by id
+ */
+function getByID(id, pageTitle){
+
+    var deferred = Q.defer();
+
+    db.demotest.findById(id, function(err, user){
+
+        if(err) deferred.reject(err);
+
+        if(!user) deferred.reject("User not found");
+
+        deferred.resolve(user[pageTitle]);
+    })
+
+    return deferred.promise;
+}
+
+/**
+ * Get All Users by type
+ * @param {string} type 
+ */
+function getUsersByType(type){
+
+    var deferred = Q.defer();
+
+    db.demotest.find({user_type: type,  personal_details: {$ne: null}}).toArray(function (err, users) {
+
+        if (err) deferred.reject(err);
+
+        if(users){
+           
+            deferred.resolve(users);
+        }
+        else{
+
+            deferred.reject('No user found');
+        }
+    });
 
     return deferred.promise;
 }
@@ -115,7 +161,7 @@ function update(id, data){
 
         if (err) deferred.reject(err);
 
-        deferred.resolve("OLLLL");
+        deferred.resolve("OK");
 
     });
 

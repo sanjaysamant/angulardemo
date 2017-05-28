@@ -46,8 +46,28 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 				data['user_type'] = response.user_type;
 				localStorage.setItem('auth', JSON.stringify(data));// set user value in session storage
 				$scope.resp = {"message" : "Logged in successfully"};
-				
-				$location.path('/users_personal/'+ response._id)//.search({id : response._id});
+				$location.path('/users_personal/'+ response._id);//.search({id : response._id});
+
+				// if(!response.personal_details){
+
+				// 	$location.path('/users_personal/'+ response._id);//.search({id : response._id});
+				// }
+				// else if(!response.edu_details){
+
+				// 	$location.path('/users_edu/'+ response._id);//.search({id : response._id});
+				// }
+				// else if(!response.contact_details){
+
+				// 	$location.path('/users_contact/'+ response._id);//.search({id : response._id});
+				// }
+				// else if(!response.other_details){
+
+				// 	$location.path('/users_other/'+ response._id);//.search({id : response._id});
+				// }
+				// else{
+
+				// 	$location.path('/dashboard');
+				// }
 			}else{
 
 				$scope.resp = {"message" : response};

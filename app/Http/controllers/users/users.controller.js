@@ -1,9 +1,52 @@
-app.controller('UsersController', function ( $scope, $route, $routeParams, UserService, NavigationService, $http, $location, API_URL){
+app.controller('UsersController', function ( $scope, $filter, $route, $routeParams, UserService, NavigationService, $http, $location, API_URL){
 
 	$scope.navMenu = NavigationService.getNavigation();
+	$scope.page_type = "add";
 
-	$scope.page_type = UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle);
-	console.log($scope.page_type)	
+	// console.log($scope.page_type);
+	// getPageType();
+	/**
+	 * Get page type
+	 */
+	$scope.getPageType = function (){
+	
+		$http.get(API_URL + '/api/users/' + $routeParams.id + '/' + $route.current.$$route.pageTitle).success(function (response){
+			
+			if(response){
+
+				$scope.page_type = "edit";
+				$scope.formData = response;
+				$scope.formData.d_o_b = new Date(response.d_o_b)//$filter('date')(response.d_o_b, "dd/MM/yyyy");  // for type="date" binding
+			}
+		})
+	}
+	
+	/**
+	 * Get users with type
+	 */
+    $scope.getDevelopers = function () {
+        
+        $http.get(API_URL + '/api/users/developer').success(function (response){
+
+			$scope.developers = response;
+            // console.log(response);
+        });
+    }
+	/**
+	 * Get user detail by id
+	 */
+    $scope.getUserDetails = function () {
+        
+        $http.get(API_URL + '/api/user/show/' + $routeParams.id).success(function (response){
+
+			$scope.user = response;
+            // console.log(response);
+        });
+    }
+
+	
+	//  UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle);
+	// console.log(UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle))	
 
 	/**
 	 * store personal info
@@ -54,15 +97,14 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 
 		var data = {};
 		data['contact_details'] = $scope.formData
-		console.log(data)
-		$http.put(API_URL + "/api/users/contact/" + $routeParams.id, $scope.formData). success(function (response){
+		$http.put(API_URL + "/api/users/contact/" + $routeParams.id, data). success(function (response){
 			
 			if(response == "OK"){
 
 				var user = localStorage.getItem('auth');
 
 				if(user.user_type === "developer")
-					$location.path("/other/" + $routeParams.id);
+					$location.path("/users_other/" + $routeParams.id);
 				else
 					$location.path("/home");
 
@@ -77,11 +119,27 @@ app.controller('UsersController', function ( $scope, $route, $routeParams, UserS
 /**
  * Other Details
  */
-	$scope.storeOthers = function () {
+	$scope.storeOther = function () {
+		var data = {};
+		data['other_details'] = $scope.formData
 
-		$http.put(API_URL + "/api/users/others/" + $routeParams.id, JSON.stringify($scope.formData), function (response){
+		$http.put(API_URL + "/api/users/other/" + $routeParams.id, data).success(function (response){
 			
-			console.log(response);
+			if(response == "OK"){
+
+				var user = localStorage.getItem('auth');
+
+				if(user.user_type === "developer")
+					$location.path("/dashboard");
+				else
+					$location.path("/home");
+
+			}
+			else{
+
+				$scope.resp = {"message" : response};
+				$location.path("/users_other/" + $routeParams.id);
+			}
 		});
 	}
 

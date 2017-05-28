@@ -1,8 +1,29 @@
 <ng-include src="'/view/templates/header.html'"></ng-include>
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-  <h3 class="w3-center">Developers</h3>
-  <p class="w3-center w3-large">Find Developers:</p>
-  <div class="w3-row-padding" style="margin-top:64px">
+<!-- Pricing Section -->
+<div class="w3-container w3-center" style="padding:64px 16px"  data-ng-init="getDevelopers()">
+  <h3>Developers</h3>
+  <p class="w3-large">Find Developers:</p>
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for developers..">
+
+  <table id="myTable">
+    <tr class="header">
+      <th >First Name</th>
+      <th >Last Name</th>
+      <th >Email</th>
+      <th >Country</th>
+      <th >Action</th>
+    </tr>
+    <tr ng-repeat="developer in developers">
+      <td>{{developer.personal_details.first_name}}</td>
+      <td>{{developer.personal_details.last_name}}</td>
+      <td>{{developer.email}}</td>
+      <td>{{developer.contact_details.country}}</td>
+      <td><a ng-href="/user/show/{{developer._id}}">View Details</a></td>
+    </tr>
+  </table>
+
   </div>
 </div>
+
 <ng-include src="'/view/templates/footer.html'"></ng-include>

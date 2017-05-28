@@ -8,21 +8,50 @@ var session = require('express-session');
 route.use(bodyParser.urlencoded({ extended: true })); // for parsing   application/x-www-form-urlencoded
 route.use(bodyParser.json()); // for parsing application/json
 // route.use(bodyParser.json({ type: 'application/vnd.api+json' }))
-
 /**
- * Get user api
+ * Get user by id
  */
-route.get("/:id", function (req, res){
+route.get("/show/:id", function (req, res){
 
-    userModel.getByID(req.params.id).then( function ( result) {
-        //console.log(req.body);
-        // res.send(result.req.pageTitle);
+    userModel.getUserByID(req.params.id).then( function ( result) {
+
+        res.send(result);
     }).catch (function (err){
 
       res.send(err).status(400);
 
     })
 })
+
+/**
+ * Get user api
+ */
+route.get("/:id/:pageTitle", function (req, res){
+
+    userModel.getByID(req.params.id, req.params.pageTitle).then( function ( result) {
+
+        res.send(result);
+    }).catch (function (err){
+
+      res.send(err).status(400);
+
+    })
+})
+
+/**
+ * Get all users by type
+ */
+
+route.get("/:user_type", function (req, res){
+
+    userModel.getUsersByType(req.params.user_type).then(function (result) {
+
+        res.send(result);
+    }).catch(function (err){
+        
+        res.send(err).status(400);
+    });
+});
 /**
  * Personal Details
  */

@@ -48,6 +48,8 @@
 	<script src="/Http/controllers/auth/auth.controller.js"></script>
 	<script src="/Http/controllers/navigation.controller.js"></script>
 	<script src="/Http/controllers/users/users.controller.js"></script>
+	<script src="/Http/controllers/developers.controller.js"></script>
+	<script src="/Http/controllers/dashboard.controller.js"></script>
 	<!--<script src="/Http/controllers/users/edu.controller.js"></script>-->
 	<!--<script src="Http/controllers/users/contact.controller.js"></script>
 	<script src="Http/controllers/users/others.controller.js"></script>-->
@@ -95,6 +97,31 @@
 			mySidebar.style.display = "none";
 		}
 	</script>
+
+	<!--Seach in table-->
+	<script>
+		function myFunction() {
+		// Declare variables 
+		var input, filter, table, tr, td, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("myTable");
+		tr = table.getElementsByTagName("tr");
+
+		// Loop through all table rows, and hide those who don't match the search query
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			} else {
+				tr[i].style.display = "none";
+			}
+			} 
+		}
+		}
+	</script>
+	<!--End of search in table-->
 	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
 <!--
 To use this code on your website, get a free API key from Google.

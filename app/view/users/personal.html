@@ -1,5 +1,5 @@
 <ng-include src="'/view/templates/header.html'"></ng-include>
-<div class="w3-container w3-light-grey" style="padding:40px 6px" id="contact">
+<div class="w3-container w3-light-grey" style="padding:40px 6px" id="contact" data-ng-init="getPageType()">
     <div class="center">
       <div id="id01" class="w3-modal">
         <div class="w3-modal-content w3-danger-message">
@@ -19,27 +19,48 @@
           <i ng-show="formData.upload_form.proformData_pic.$error.maxSize">formData too large 
             {{up.formData.size / 1000000|number:1}}MB: max 20M</i>-->
           <div>
-            <label><b>First Name</b></label>{{page_type| json}}
-            <div ng-if="page_type === 'add'">
+            <label><b>First Name</b></label>
+            <div  ng-if="page_type === 'add'">
               <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
-              <span ng-show="personalDetailsForm.first_name.$touched && personalDetailsForm.first_name.$invalid">The First Name is required.</span>
             </div>
             <div ng-if="page_type === 'edit'">
               <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
             </div>
+            <span ng-show="personalDetailsForm.first_name.$touched && personalDetailsForm.first_name.$invalid">The First Name is required.</span>
           </div>
 
-          <label><b>Last Name</b></label>
-          <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
-          <span ng-show="personalDetailsForm.last_name.$touched && personalDetailsForm.last_name.$invalid">The First Name is required.</span>
+          <div>
+            <label><b>Last Name</b></label>
+            <div  ng-if="page_type === 'add'">
+              <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
+            </div>
+            <div  ng-if="page_type === 'edit'">
+              <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
+            </div>
+              <span ng-show="personalDetailsForm.last_name.$touched && personalDetailsForm.last_name.$invalid">The Last Name is required.</span>
+          </div>
 
-          <label><b>Middle Name</b></label>
-          <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
+          <div>
+            <div ng-if="page_type === 'add'">
+              <label><b>Middle Name</b></label>
+              <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
+            </div>
+            <div ng-if="page_type === 'edit'">
+              <label><b>Middle Name</b></label>
+              <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
+            </div>
+          </div>
 
-          <label><b>Date Of Birth</b></label>
-          <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
-          <span ng-show="personalDetailsForm.d_o_b.$touched && personalDetailsForm.d_o_b.$invalid">The First Name is required.</span>
-
+          <div>
+            <label><b>Date Of Birth</b></label>
+            <div ng-if="page_type === 'add'">
+              <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
+            </div>
+            <div ng-if="page_type === 'edit'">
+              <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
+            </div>
+            <span ng-show="personalDetailsForm.d_o_b.$touched && personalDetailsForm.d_o_b.$invalid">Date of birthrequired.</span>
+          </div>
           <button type="submit" onclick="document.getElementById('id01').style.display='block'">Next</button>
           <!-- <input type="checkbox" checked="checked"> Remember me -->
         </div>
