@@ -54,7 +54,13 @@ app.use(function(req, res, next) {
 app.use('/api/auth', require('./controllers/auth/auth.controller'));
 app.use('/api/users', require('./controllers/users/users.controller'));
 app.use('/api/user/', require('./controllers/users/users.controller'));
-
+function redirectUnmatched(req, res) {
+  res.redirect("/");
+}
+app.get('*', function(req, res)
+{
+    res.send('/public/index.html');
+});
 // app.get('/api', function (req, res) {
 //     res.send('/api/login');
 // } );

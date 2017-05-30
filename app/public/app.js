@@ -168,7 +168,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
     		$locationProvider.html5Mode({
 			 	enabled: true,
 			  	requireBase: false
-			});
+			}).hashPrefix('*');
 		}).run(['$http', '$cookies', function($http, $cookies) {
 
 			$http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
