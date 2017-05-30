@@ -24,7 +24,7 @@ route.get("/show/:id", function (req, res){
 })
 
 /**
- * Get user api
+ * Get user info data api
  */
 route.get("/:id/:pageTitle", function (req, res){
 

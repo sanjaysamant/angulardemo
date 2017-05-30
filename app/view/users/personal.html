@@ -20,55 +20,28 @@
             {{up.formData.size / 1000000|number:1}}MB: max 20M</i>-->
           <div>
             <label><b>First Name</b></label>
-            <div  ng-if="page_type === 'add'">
-              <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
-            </div>
-            <div ng-if="page_type === 'edit'">
-              <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
-            </div>
+            <input type="text" placeholder="First Name" required name="first_name" ng-model="formData.first_name">
             <span ng-show="personalDetailsForm.first_name.$touched && personalDetailsForm.first_name.$invalid">The First Name is required.</span>
           </div>
 
           <div>
             <label><b>Last Name</b></label>
-            <div  ng-if="page_type === 'add'">
-              <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
-            </div>
-            <div  ng-if="page_type === 'edit'">
-              <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
-            </div>
-              <span ng-show="personalDetailsForm.last_name.$touched && personalDetailsForm.last_name.$invalid">The Last Name is required.</span>
+            <input type="text" placeholder="Last Name" required name="last_name" ng-model="formData.last_name">
+            <span ng-show="personalDetailsForm.last_name.$touched && personalDetailsForm.last_name.$invalid">The Last Name is required.</span>
           </div>
 
           <div>
-            <div ng-if="page_type === 'add'">
-              <label><b>Middle Name</b></label>
-              <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
-            </div>
-            <div ng-if="page_type === 'edit'">
-              <label><b>Middle Name</b></label>
-              <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
-            </div>
+            <label><b>Middle Name</b></label>
+            <input type="text" placeholder="Middle Name" name="middle_name" ng-model="formData.middle_name">
           </div>
 
           <div>
             <label><b>Date Of Birth</b></label>
-            <div ng-if="page_type === 'add'">
-              <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
-            </div>
-            <div ng-if="page_type === 'edit'">
-              <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
-            </div>
+            <input type="date" placeholder="Date Of Birth" required name="d_o_b" ng-model="formData.d_o_b">
             <span ng-show="personalDetailsForm.d_o_b.$touched && personalDetailsForm.d_o_b.$invalid">Date of birthrequired.</span>
           </div>
           <button type="submit" onclick="document.getElementById('id01').style.display='block'">Next</button>
-          <!-- <input type="checkbox" checked="checked"> Remember me -->
         </div>
-
-        <!-- <div class="container" style="background-color:#f1f1f1">
-          <button type="button" class="cancelbtn">Cancel</button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
-        </div> -->
       </form>
     </div>
 </div>

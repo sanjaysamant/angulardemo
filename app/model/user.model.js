@@ -39,8 +39,11 @@ function getUserByID(id){
     return deferred.promise;
 
 }
+
 /**
- * Get User data by id
+ * Get User info data by id
+ * @param {*string} id 
+ * @param {*string} pageTitle 
  */
 function getByID(id, pageTitle){
 

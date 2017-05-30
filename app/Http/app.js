@@ -144,7 +144,7 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 
 	            controller: 'UsersController',
 	            templateUrl: '/view/users/other.html',
-				pageTitle: 'other',
+				pageTitle: 'other_details',
 				resolve:resolver(false)
 			})
 	        .when('/logout', {

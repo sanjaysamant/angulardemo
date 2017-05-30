@@ -3,10 +3,8 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
 	$scope.navMenu = NavigationService.getNavigation();
 	$scope.page_type = "add";
 
-	// console.log($scope.page_type);
-	// getPageType();
 	/**
-	 * Get page type
+	 * Get user info data
 	 */
 	$scope.getPageType = function (){
 	
@@ -14,9 +12,8 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
 			
 			if(response){
 
-				$scope.page_type = "edit";
-				$scope.formData = response;
-				$scope.formData.d_o_b = new Date(response.d_o_b)//$filter('date')(response.d_o_b, "dd/MM/yyyy");  // for type="date" binding
+				$scope.data = response;
+				// $scope.data.d_o_b = new Date(response.d_o_b)//$filter('date')(response.d_o_b, "dd/MM/yyyy");  // for type="date" binding
 			}
 		})
 	}
@@ -45,16 +42,13 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
     }
 
 	
-	//  UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle);
-	// console.log(UserService.getPageType($routeParams.id, $route.current.$$route.pageTitle))	
-
 	/**
 	 * store personal info
 	 */
 	$scope.storePersonal = function () {
 
 		var data = {};
-		data['personal_details'] = $scope.formData
+		data['personal_details'] = ($scope.formData !== 'undefined' || $scope.formData !== null) ? $scope.formData : $scope.data;
 		$http.put(API_URL + "/api/users/personal/" + $routeParams.id, data). success(function (response){
 			// console.log("true" + response);
 			if(response == "OK"){
@@ -75,8 +69,7 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
 	$scope.storeEdu = function () {
 
 		var data = {};
-		data['edu_details'] = $scope.formData
-
+		data['edu_details'] = ($scope.formData !== 'undefined' || $scope.formData !== null) ? $scope.formData : $scope.data;
 		$http.put(API_URL + "/api/users/edu/" + $routeParams.id, data). success(function (response){
 			// console.log("true" + response);
 			if(response == "OK"){
@@ -96,17 +89,21 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
 	$scope.storeContact = function () {
 
 		var data = {};
-		data['contact_details'] = $scope.formData
+		data['contact_details'] = ($scope.formData !== 'undefined' || $scope.formData !== null) ? $scope.formData : $scope.data;
 		$http.put(API_URL + "/api/users/contact/" + $routeParams.id, data). success(function (response){
 			
 			if(response == "OK"){
 
-				var user = localStorage.getItem('auth');
+				var user = JSON.parse(localStorage.getItem('auth'));
+				console.log(user.user_type)
+				if(user.user_type === "developer"){
 
-				if(user.user_type === "developer")
 					$location.path("/users_other/" + $routeParams.id);
-				else
+				}
+				else{
+
 					$location.path("/home");
+				}
 
 			}
 			else{
@@ -121,18 +118,18 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
  */
 	$scope.storeOther = function () {
 		var data = {};
-		data['other_details'] = $scope.formData
+		data['other_details'] = ($scope.formData !== 'undefined' || $scope.formData !== null) ? $scope.formData : $scope.data;
 
 		$http.put(API_URL + "/api/users/other/" + $routeParams.id, data).success(function (response){
 			
 			if(response == "OK"){
 
-				var user = localStorage.getItem('auth');
+				var user = JSON.parse(localStorage.getItem('auth'));;
 
 				if(user.user_type === "developer")
 					$location.path("/dashboard");
 				else
-					$location.path("/home");
+					$location.path("/home").replace();
 
 			}
 			else{

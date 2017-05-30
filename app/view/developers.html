@@ -19,11 +19,11 @@
       <td>{{developer.personal_details.last_name}}</td>
       <td>{{developer.email}}</td>
       <td>{{developer.contact_details.country}}</td>
-      <td><a ng-href="/user/show/{{developer._id}}">View Details</a></td>
+      <td><a  class="w3-button w3-black" onclick="document.getElementById('id01').style.display='block'">View Details</a></td>
     </tr>
   </table>
 
   </div>
 </div>
-
+<ng-include src="'/view/user.details.html'"></ng-include>
 <ng-include src="'/view/templates/footer.html'"></ng-include>
