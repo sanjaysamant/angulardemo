@@ -112,13 +112,6 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				}
 
 	        })
-			.when('/dashboard', {
-
-	            controller: 'DashboardController',
-	            templateUrl: '/view/dashboard/index.html',
-				pageTitle: 'dashboard',
-				resolve:resolver(false)
-			})
 			.when('/users_personal/:id', {
 
 	            controller: 'UsersController',
@@ -147,6 +140,40 @@ var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
 				pageTitle: 'other_details',
 				resolve:resolver(false)
 			})
+			.when('/dashboard', {
+
+	            controller: 'DashboardController',
+	            template: ' ',
+				pageTitle: 'dashboard',
+			})
+			// .when('/dashboard/user/personal/:id', {
+
+	        //     controller: 'UsersController',
+	        //     templateUrl: '/view/dashboard/users/personal.html',
+			// 	pageTitle: 'personal_details',
+			// 	resolve:resolver(false)
+			// })
+			// .when('/dashboard/user/edu/:id', {
+
+	        //     controller: 'UsersController',
+	        //     templateUrl: '/view/dashboard/users/edu.html',
+			// 	pageTitle: 'edu_details',
+			// 	resolve:resolver(false)
+			// })
+			// .when('/dashboard/user/contact/:id', {
+
+	        //     controller: 'UsersController',
+	        //     templateUrl: '/view/dashboard/users/contact.html',
+			// 	pageTitle: 'contact_details',
+			// 	resolve:resolver(false)
+			// })
+			// .when('/dashboard/user/other/:id', {
+
+	        //     controller: 'UsersController',
+	        //     templateUrl: '/view/dashboard/users/other.html',
+			// 	pageTitle: 'other_details',
+			// 	resolve:resolver(false)
+			// })
 	        .when('/logout', {
 				
 				resolve : {

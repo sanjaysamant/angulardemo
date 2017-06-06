@@ -1,16 +1,75 @@
-<div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
-      <header class="w3-container w3-teal"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-button w3-display-topright">&times;</span>
-        <h2>Modal Header</h2>
-      </header>
-      <div class="w3-container">
-        <p>Some text..</p>
-        <p>Some text..</p>
+<ng-include src="'/view/templates/header.html'"></ng-include>
+  <div class="w3-container w3-center" style="padding:64px 16px" data-ng-init="getUserDetails()">
+
+    <h3>User Details</h3>
+    <p>See below details:</p>
+
+    <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-black w3-left-align">Personal Details</button>
+    <div id="Demo1" class="w3-hide w3-animate-zoom">
+      <div class="w3-responsive">
+        <table class="w3-table-all w3-large">
+
+          <tr><td>First Name: </td> <td>{{user.personal_details.first_name}}</td></tr>
+          <tr><td>Last Name: </td> <td>{{user.personal_details.last_name}}</td></tr>
+          <tr><td>Middle Name: </td><td> {{user.personal_details.middle_name}}</td></tr>
+          <tr><td>Date Of Birth: </td><td> {{user.personal_details.d_o_b | date : "dd/MM/y"}}</td></tr>
+        </table>
       </div>
-      <footer class="w3-container w3-teal">
-        <p>Modal Footer</p>
-      </footer>
     </div>
-</div>
+  
+    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-black w3-left-align">Educational Details</button>
+    <div id="Demo2" class="w3-hide w3-animate-zoom">
+      <div class="w3-responsive">
+        <table class="w3-table-all w3-large">
+
+          <tr><td>College Name: </td> <td>{{user.edu_details.college}}</td></tr>
+          <tr><td>Course Name: </td> <td>{{user.edu_details.course_name}}</td></tr>
+          <tr><td>Start Date: </td><td> {{user.edu_details.start_date | date : "dd/MM/y"}}</td></tr>
+          <tr><td>End Date: </td><td> {{user.edu_details.end_date | date : "dd/MM/y"}}</td></tr>
+          <tr><td>Grade/Percentage(%): </td><td> {{user.edu_details.grade}}</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-black w3-left-align">Contact Details</button>
+    <div id="Demo3" class="w3-hide w3-animate-zoom">
+      <div class="w3-responsive">
+        <table class="w3-table-all w3-large">
+
+          <tr><td>Mobile Number: </td> <td>{{user.contact_details.mobile_phone}}</td></tr>
+          <tr><td>Office Phone: </td> <td>{{user.contact_details.office_phone}}</td></tr>
+          <tr><td>Home Phone: </td><td> {{user.contact_details.home_phone}}</td></tr>
+          <tr><td>Street: </td><td> {{user.contact_details.street_no }}</td></tr>
+          <tr><td>Landmark: </td><td> {{user.contact_details.landmark }}</td></tr>
+          <tr><td>Zip Code: </td><td> {{user.contact_details.zip}}</td></tr>
+          <tr><td>City: </td><td> {{user.contact_details.city }}</td></tr>
+          <tr><td>State: </td><td> {{user.contact_details.state }}</td></tr>
+          <tr><td>Country: </td><td> {{user.contact_details.country }}</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <button onclick="myFunction('Demo4')" class="w3-button w3-block w3-black w3-left-align">Test Details</button>
+    <div id="Demo4" class="w3-hide w3-animate-zoom">
+      <div class="w3-responsive">
+        <table class="w3-table-all w3-large">
+
+          <tr><td>Comming soon.........</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <button onclick="myFunction('Demo5')" class="w3-button w3-block w3-black w3-left-align">Other Details</button>
+    <div id="Demo5" class="w3-hide w3-animate-zoom">
+      <div class="w3-responsive">
+        <table class="w3-table-all w3-large">
+
+          <tr><td>Work Type: </td> <td>{{user.other_details.work_type}}</td></tr>
+          <tr><td>Skills: </td> <td>{{user.other_details.skills}}</td></tr>
+          <tr><td>Rate/Hour: </td><td>$ {{user.other_details.rate}}</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+<ng-include src="'/view/templates/footer.html'"></ng-include>

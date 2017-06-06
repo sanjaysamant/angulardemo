@@ -1,4 +1,4 @@
-app.controller('UsersController', function ( $scope, $filter, $route, $routeParams, UserService, NavigationService, $http, $location, API_URL){
+app.controller('UsersController', function ( $scope, $filter, $route, $routeParams, UserService, NavigationService, $http, $window, $location, API_URL){
 
 	$scope.navMenu = NavigationService.getNavigation();
 	$scope.page_type = "add";
@@ -36,8 +36,13 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
         
         $http.get(API_URL + '/api/user/show/' + $routeParams.id).success(function (response){
 
+			if(response.other_details){
+
+				response.other_details.work_type = response.other_details.work_type.toString();
+				response.other_details.skills = response.other_details.skills.toString();
+			}
+			
 			$scope.user = response;
-            // console.log(response);
         });
     }
 
@@ -127,7 +132,7 @@ app.controller('UsersController', function ( $scope, $filter, $route, $routePara
 				var user = JSON.parse(localStorage.getItem('auth'));;
 
 				if(user.user_type === "developer")
-					$location.path("/dashboard");
+					$location.path('/dashboard');
 				else
 					$location.path("/home").replace();
 

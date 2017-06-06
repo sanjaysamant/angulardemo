@@ -71,13 +71,12 @@ route.post('/login', function (req, res) {
 
     if(user){
 
-      SESSION = req.session;
-      SESSION._id = user._id;
-      SESSION.username = user.username;
-      SESSION.email = user.email;
-      SESSION.user_type = user.user_type;
-      delete user.password;
-      
+      // SESSION._id = user._id;
+      // SESSION.username = user.username;
+      // SESSION.email = user.email;
+      // SESSION.user_type = user.user_type;
+      // delete user.password;
+      console.log(user);
       res.send(user);
     }else{
 

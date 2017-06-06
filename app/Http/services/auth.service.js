@@ -136,4 +136,12 @@ app.service('AuthService', function (){//RegisterFactory) {
 
 		return response;
 	}
+
+	/**
+	 * 
+	 */
+	this.auth = function(){
+
+		return JSON.parse(localStorage.getItem('auth'));
+	}
 });

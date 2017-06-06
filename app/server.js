@@ -47,14 +47,17 @@ app.use(function(req, res, next) {
 
 
 
+app.set('view engine', 'ejs');
 
-
+app.set('views', './view/dashboard');
+app.use("/public",express.static(__dirname + "/public/dashboard/"));
 
 //routes
 app.use('/api/auth', require('./controllers/auth/auth.controller'));
 app.use('/api/users', require('./controllers/users/users.controller'));
-app.use('/api/user/', require('./controllers/users/users.controller'));
+app.use('/api/user', require('./controllers/users/users.controller'));
 
+app.use('/api/dashboard', require('./controllers/dashboard/users.controller'));
 // app.get('/api', function (req, res) {
 //     res.send('/api/login');
 // } );
