@@ -3,7 +3,7 @@ var mongo = require('mongoskin');
 var Q = require('q');
 var _ = require('lodash');
 var randomstring = require('randomstring');
-var db = mongo.db('mongodb://127.0.0.1/angulardemo');
+var db = mongo.db('mongodb://34.209.107.197/angulardemo');
 
 db.bind('demotest');
 // var hash = bcrypt.hashSync("12345", salt);
