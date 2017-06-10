@@ -62,9 +62,9 @@ app.use('/api/dashboard', require('./controllers/dashboard/users.controller'));
 //     res.send('/api/login');
 // } );
 // start server
-var server = app.listen(8001, 'localhost', function () {
+var server = app.listen(8001, function () {
 
-    console.log('Server listening at http://' + server.address().address + ':' + server.address().port);
+    console.log('Server listening at ' + server.address().port);
 });
 
 // module.exports = app;
