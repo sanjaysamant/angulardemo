@@ -76,7 +76,7 @@ route.post('/login', function (req, res) {
       // SESSION.email = user.email;
       // SESSION.user_type = user.user_type;
       // delete user.password;
-      console.log(user);
+      // console.log(user);
       res.send(user);
     }else{
 

@@ -109,7 +109,7 @@ app.controller('AuthController', function ( $scope, AuthService, NavigationServi
 	$scope.checkLogin = function () {
 		
 		$scope.resp = AuthService.checkLogin();
-		console.log($scope.resp);
+		// console.log($scope.resp);
 		FlashFactory.setMessage($scope.resp.message);
 	}
 
