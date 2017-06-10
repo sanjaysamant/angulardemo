@@ -1,5 +1,5 @@
 var app = angular.module('angulardemo', ['ngRoute', 'ngCookies'])
-		.constant('API_URL', 'http://34.209.107.197:8001/')
+		.constant('API_URL', 'http://34.209.107.197:8001')
 		.config(function ($routeProvider, $locationProvider, $httpProvider) {
 			
 			$httpProvider.defaults.headers.common = {'Content-Type' : 'application/json'};
